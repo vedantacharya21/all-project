@@ -1,82 +1,149 @@
-# 🎂 Age Calculator
+# ⚖️ BMI Calculator
 
-A simple and interactive Age Calculator built using **Python** and **Streamlit**. Users can select their date of birth and instantly calculate their age in years.
+A simple and interactive BMI (Body Mass Index) Calculator built using **Python** and **Streamlit**.
+
+Users can enter their weight and height to calculate their BMI, view their health category, healthy weight range, and receive personalized recommendations.
+
+---
 
 Link:
 
 ## 🚀 Features
 
-- 📅 Select Date of Birth
-- 🎂 Calculate Age in Years
-- ⚡ Fast and Simple Interface
-- 🌐 Built with Streamlit
-- 📱 Responsive Web Application
+- Calculate BMI instantly
+- Displays BMI value
+- Identifies BMI category
+  - 🟡 Underweight
+  - 🟢 Normal Weight
+  - 🟠 Overweight
+  - 🔴 Obese
+- Shows healthy weight range
+- Weight gain/loss recommendation
+- BMI progress bar
+- BMI category reference table
+- Input validation for invalid values
+- Clean and responsive Streamlit interface
 
-## 🛠️ Technologies Used
-
-- Python
-- Streamlit
-- datetime Module
+---
 
 ## 📂 Project Structure
 
 ```
-Age-Calculator/
+BMI-Calculator/
 │
 ├── app.py
 ├── requirements.txt
 ├── README.md
 ```
 
-## ▶️ Installation
+---
 
-### Clone the repository
+## 🛠️ Technologies Used
+
+- Python 3.10+
+- Streamlit
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/age-calculator.git
+git clone https://github.com/vedantacharya21/bmi-calculator.git
 ```
 
-### Navigate to the project
+### 2. Navigate to the project
 
 ```bash
-cd Age-Calculator
+cd bmi-calculator
 ```
 
-### Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run the application
+---
+
+## ▶️ Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-## 📸 Screenshot
+If the above command doesn't work, use:
 
-(Add a screenshot of your application here after deployment.)
+```bash
+python -m streamlit run app.py
+```
+
+---
+
+## 📊 BMI Classification
+
+| Category | BMI Range |
+|----------|-----------|
+| Underweight | Below 18.5 |
+| Normal Weight | 18.5 – 24.9 |
+| Overweight | 25.0 – 29.9 |
+| Obese | 30.0 and above |
+
+---
+
+## 📸 Preview
+
+The application includes:
+
+- Weight input
+- Height input
+- BMI calculation
+- Healthy weight range
+- Personalized recommendation
+- BMI progress indicator
+- BMI classification table
+
+---
+
+## 💡 Formula Used
+
+BMI is calculated using:
+
+```
+BMI = Weight (kg) / Height² (m²)
+```
+
+Example:
+
+```
+Weight = 70 kg
+Height = 1.75 m
+
+BMI = 70 / (1.75 × 1.75)
+BMI = 22.86
+```
+
+---
 
 ## 🎯 Future Improvements
 
-- Calculate age in Years, Months, and Days
-- Display Total Days Lived
-- Show Total Hours, Minutes, and Seconds
-- Countdown to Next Birthday
-- Zodiac Sign Detection
-- Birthday Weekday
-- Leap Year Check
-- Better UI and Theme
+- Imperial unit support (Feet/Inches & Pounds)
+- BMI gauge chart
+- Health tips based on BMI
+- Dark mode support
+- Download BMI report as PDF
+- BMI history tracking
+- Age and gender-based recommendations
+
+---
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
-GitHub: https://github.com/vedantacharya21
-
-LinkedIn: https://www.linkedin.com/in/vedant-acharya-71b012374/
-
 ---
 
-⭐ If you found this project useful, consider giving it a star on GitHub.
+## 📄 License
+
+This project is licensed under the MIT License.
