@@ -1,105 +1,149 @@
-# 🧮 Calculator Using Python & Streamlit
+# ⚖️ BMI Calculator
 
-A simple and beginner-friendly calculator built using **Python** and **Streamlit**.
+A simple and interactive BMI (Body Mass Index) Calculator built using **Python** and **Streamlit**.
 
-This project performs basic mathematical operations through a simple web interface.
+Users can enter their weight and height to calculate their BMI, view their health category, healthy weight range, and receive personalized recommendations.
+
+---
 
 Link:
 
 ## 🚀 Features
 
-* Addition
-* Subtraction
-* Multiplication
-* Division
-* Division-by-zero error handling
-* Simple and clean Streamlit interface
+- Calculate BMI instantly
+- Displays BMI value
+- Identifies BMI category
+  - 🟡 Underweight
+  - 🟢 Normal Weight
+  - 🟠 Overweight
+  - 🔴 Obese
+- Shows healthy weight range
+- Weight gain/loss recommendation
+- BMI progress bar
+- BMI category reference table
+- Input validation for invalid values
+- Clean and responsive Streamlit interface
 
-## 🛠️ Technologies Used
+---
 
-* Python
-* Streamlit
+## 📂 Project Structure
 
-## 📁 Project Structure
-
-```text
-Calculator/
+```
+BMI-Calculator/
 │
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
 ```
 
-## ⚙️ Installation
+---
+
+## 🛠️ Technologies Used
+
+- Python 3.10+
+- Streamlit
+
+---
+
+## 📦 Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/calculator.git
+git clone https://github.com/vedantacharya21/bmi-calculator.git
 ```
 
-### 2. Open the project folder
+### 2. Navigate to the project
 
 ```bash
-cd calculator
+cd bmi-calculator
 ```
 
-### 3. Install the required library
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ## ▶️ Run the Application
 
-Run the following command:
+```bash
+streamlit run app.py
+```
+
+If the above command doesn't work, use:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-The application will open in your browser.
+---
 
-## 🧮 How It Works
+## 📊 BMI Classification
 
-1. Enter the first number.
-2. Enter the second number.
-3. Select an operation.
-4. Click **Calculate**.
-5. The result will be displayed on the screen.
+| Category | BMI Range |
+|----------|-----------|
+| Underweight | Below 18.5 |
+| Normal Weight | 18.5 – 24.9 |
+| Overweight | 25.0 – 29.9 |
+| Obese | 30.0 and above |
 
-## 📌 Example
+---
 
-If:
+## 📸 Preview
 
-```text
-First Number: 20
-Second Number: 5
-Operation: Division
+The application includes:
+
+- Weight input
+- Height input
+- BMI calculation
+- Healthy weight range
+- Personalized recommendation
+- BMI progress indicator
+- BMI classification table
+
+---
+
+## 💡 Formula Used
+
+BMI is calculated using:
+
+```
+BMI = Weight (kg) / Height² (m²)
 ```
 
-The output will be:
+Example:
 
-```text
-Result: 4.0
+```
+Weight = 70 kg
+Height = 1.75 m
+
+BMI = 70 / (1.75 × 1.75)
+BMI = 22.86
 ```
 
-## ⚠️ Error Handling
+---
 
-The calculator prevents division by zero.
+## 🎯 Future Improvements
 
-For example:
+- Imperial unit support (Feet/Inches & Pounds)
+- BMI gauge chart
+- Health tips based on BMI
+- Dark mode support
+- Download BMI report as PDF
+- BMI history tracking
+- Age and gender-based recommendations
 
-```text
-10 ÷ 0
-```
+---
 
-will display:
+## 👨‍💻 Author
 
-```text
-Cannot divide by zero.
-```
+**Vedant Acharya**
+
+---
 
 ## 📄 License
 
-This project is open-source and available for learning and educational purposes.
+This project is licensed under the MIT License.
