@@ -1,97 +1,111 @@
 import streamlit as st
-import requests
+import qrcode
+from qrcode.constants import ERROR_CORRECT_L
+from PIL import Image
+from io import BytesIO
 
+# -----------------------------
+# Page Configuration
+# -----------------------------
 st.set_page_config(
-    page_title="Currency Converter",
-    page_icon="💱",
+    page_title="QR Code Generator",
+    page_icon="🔳",
     layout="centered"
 )
 
-st.title("💱 Currency Converter")
-st.write("Convert currencies using the latest exchange rates.")
+# -----------------------------
+# Function to Generate QR Code
+# -----------------------------
+def generate_qr(data, box_size, fill_color, back_color):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=ERROR_CORRECT_L,
+        box_size=box_size,
+        border=4
+    )
 
-# Currency list
-currencies = {
-    "USD": "US Dollar",
-    "INR": "Indian Rupee",
-    "EUR": "Euro",
-    "GBP": "British Pound",
-    "JPY": "Japanese Yen",
-    "AUD": "Australian Dollar",
-    "CAD": "Canadian Dollar",
-    "CHF": "Swiss Franc",
-    "CNY": "Chinese Yuan",
-    "AED": "UAE Dirham"
-}
+    qr.add_data(data)
+    qr.make(fit=True)
 
-# Input
-amount = st.number_input(
-    "Enter amount",
-    min_value=0.01,
-    value=100.0,
-    step=1.0
+    img = qr.make_image(
+        fill_color=fill_color,
+        back_color=back_color
+    ).convert("RGB")
+
+    return img
+
+
+# -----------------------------
+# UI
+# -----------------------------
+st.title("🔳 QR Code Generator")
+st.write("Generate QR Codes from Text or URLs.")
+
+data = st.text_area(
+    "Enter Text or URL",
+    placeholder="https://example.com"
 )
 
-col1, col2 = st.columns(2)
+filename = st.text_input(
+    "File Name",
+    value="qr_code"
+)
 
-with col1:
-    from_currency = st.selectbox(
-        "From",
-        list(currencies.keys()),
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
+box_size = st.slider(
+    "QR Size",
+    min_value=5,
+    max_value=20,
+    value=10
+)
 
-with col2:
-    to_currency = st.selectbox(
-        "To",
-        list(currencies.keys()),
-        index=1,
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
+fill_color = st.color_picker(
+    "QR Color",
+    "#000000"
+)
 
-if st.button("Convert 💱", use_container_width=True):
+back_color = st.color_picker(
+    "Background Color",
+    "#FFFFFF"
+)
 
-    if from_currency == to_currency:
-        result = amount
-        rate = 1
+# -----------------------------
+# Generate Button
+# -----------------------------
+if st.button("Generate QR Code", use_container_width=True):
+
+    if data.strip() == "":
+        st.warning("Please enter some text or a URL.")
 
     else:
         try:
-            url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
+            img = generate_qr(
+                data,
+                box_size,
+                fill_color,
+                back_color
+            )
 
-            response = requests.get(url, timeout=10)
+            st.success("QR Code Generated Successfully!")
 
-            if response.status_code == 200:
-                data = response.json()
+            st.image(
+                img,
+                caption="Generated QR Code",
+                use_container_width=True
+            )
 
-                result = data["rates"][to_currency]
+            # Save image in memory
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
 
-                # Get exchange rate for 1 unit
-                rate_url = (
-                    f"https://api.frankfurter.app/latest"
-                    f"?amount=1&from={from_currency}&to={to_currency}"
-                )
-
-                rate_response = requests.get(rate_url, timeout=10)
-                rate_data = rate_response.json()
-
-                rate = rate_data["rates"][to_currency]
-
-            else:
-                st.error("Unable to fetch exchange rate.")
-
-        except requests.exceptions.RequestException:
-            st.error("Internet connection or API error.")
+            # Download Button
+            st.download_button(
+                label="📥 Download QR Code",
+                data=buffer.getvalue(),
+                file_name=f"{filename}.png",
+                mime="image/png",
+                use_container_width=True
+            )
 
         except Exception as e:
-            st.error(f"Something went wrong: {e}")
-
-    # Display result
-    st.success(
-        f"{amount:,.2f} {from_currency} = "
-        f"{result:,.2f} {to_currency}"
-    )
-
-    st.info(
-        f"1 {from_currency} = {rate:.4f} {to_currency}"
-    )
+            st.error(f"Error: {e}")
