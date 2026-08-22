@@ -1,111 +1,44 @@
 import streamlit as st
-import qrcode
-from qrcode.constants import ERROR_CORRECT_L
-from PIL import Image
-from io import BytesIO
+import random
 
-# -----------------------------
 # Page Configuration
-# -----------------------------
 st.set_page_config(
-    page_title="QR Code Generator",
-    page_icon="🔳",
+    page_title="Rock Paper Scissor Game",
+    page_icon="🎮",
     layout="centered"
 )
 
-# -----------------------------
-# Function to Generate QR Code
-# -----------------------------
-def generate_qr(data, box_size, fill_color, back_color):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=ERROR_CORRECT_L,
-        box_size=box_size,
-        border=4
-    )
+# Title
+st.title("🎮 Rock Paper Scissor Game")
+st.write("Play Rock, Paper, Scissor against the computer!")
 
-    qr.add_data(data)
-    qr.make(fit=True)
+choices = ["Rock", "Paper", "Scissor"]
 
-    img = qr.make_image(
-        fill_color=fill_color,
-        back_color=back_color
-    ).convert("RGB")
-
-    return img
-
-
-# -----------------------------
-# UI
-# -----------------------------
-st.title("🔳 QR Code Generator")
-st.write("Generate QR Codes from Text or URLs.")
-
-data = st.text_area(
-    "Enter Text or URL",
-    placeholder="https://example.com"
+# User Choice
+user_choice = st.selectbox(
+    "Choose your move:",
+    choices
 )
 
-filename = st.text_input(
-    "File Name",
-    value="qr_code"
-)
+# Play Button
+if st.button("Play"):
 
-box_size = st.slider(
-    "QR Size",
-    min_value=5,
-    max_value=20,
-    value=10
-)
+    computer_choice = random.choice(choices)
 
-fill_color = st.color_picker(
-    "QR Color",
-    "#000000"
-)
+    st.subheader("Results")
+    st.write(f"🧑 You chose: **{user_choice}**")
+    st.write(f"💻 Computer chose: **{computer_choice}**")
 
-back_color = st.color_picker(
-    "Background Color",
-    "#FFFFFF"
-)
-
-# -----------------------------
-# Generate Button
-# -----------------------------
-if st.button("Generate QR Code", use_container_width=True):
-
-    if data.strip() == "":
-        st.warning("Please enter some text or a URL.")
-
+    if user_choice == computer_choice:
+        st.info("🤝 Match Draw!")
+    elif (
+        (user_choice == "Rock" and computer_choice == "Scissor") or
+        (user_choice == "Paper" and computer_choice == "Rock") or
+        (user_choice == "Scissor" and computer_choice == "Paper")
+    ):
+        st.success("🎉 You Win!")
     else:
-        try:
-            img = generate_qr(
-                data,
-                box_size,
-                fill_color,
-                back_color
-            )
+        st.error("😢 Computer Wins!")
 
-            st.success("QR Code Generated Successfully!")
-
-            st.image(
-                img,
-                caption="Generated QR Code",
-                use_container_width=True
-            )
-
-            # Save image in memory
-            buffer = BytesIO()
-            img.save(buffer, format="PNG")
-            buffer.seek(0)
-
-            # Download Button
-            st.download_button(
-                label="📥 Download QR Code",
-                data=buffer.getvalue(),
-                file_name=f"{filename}.png",
-                mime="image/png",
-                use_container_width=True
-            )
-
-        except Exception as e:
-            st.error(f"Error: {e}")
+st.markdown("---")
+st.caption("Made with ❤️ using Streamlit")
