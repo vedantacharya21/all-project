@@ -1,106 +1,81 @@
-# 🔐 OTP Generator
+# 🎓 Grade Checker
 
-A simple and secure **OTP (One-Time Password) Generator** built using Python and Streamlit.
-
-The application generates a random 6-digit OTP and allows the user to verify it. Each OTP is valid for **5 minutes**.
+A simple and interactive Grade Checker web application built with **Python** and **Streamlit**. Enter your marks (0–100) and instantly find your grade.
 
 Link:
 
 ## 🚀 Features
 
-* 🔢 Generate a random 6-digit OTP
-* 🔐 Uses Python's `secrets` module for secure random generation
-* ⏳ OTP validity of 5 minutes
-* ✅ OTP verification
-* ❌ Invalid OTP detection
-* ⏰ Expired OTP detection
-* 🔄 Generate a new OTP after expiration
-* 🖥️ Simple and user-friendly Streamlit interface
+- Simple and clean user interface
+- Instant grade calculation
+- Input validation (0–100 marks)
+- Responsive Streamlit web app
 
-## 🛠️ Technologies Used
+## 🏆 Grade Criteria
 
-* Python
-* Streamlit
-* Secrets
-* Time
+| Marks | Grade |
+|-------:|:-----:|
+| 90 – 100 | A1 |
+| 80 – 89 | A2 |
+| 70 – 79 | B1 |
+| 60 – 69 | B2 |
+| 50 – 59 | C1 |
+| 40 – 49 | C2 |
+| 33 – 39 | D |
+| 21 – 32 | E1 |
+| 0 – 20 | E2 |
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-```text
-OTP-Generator/
+```
+grade-checker/
 │
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
 ```
 
-## ⚙️ Installation
+## 🛠️ Installation
 
-### 1. Clone the repository
+1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/otp-generator.git
+git clone https://github.com/vedantacharya21/grade-checker.git
 ```
 
-### 2. Open the project folder
+2. Navigate to the project directory
 
 ```bash
-cd otp-generator
+cd grade-checker
 ```
 
-### 3. Install the required package
+3. Install the required packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ▶️ Run the Application
+4. Run the application
 
-Run the Streamlit application using:
+```bash
+streamlit run app.py
+```
+
+If the above command doesn't work, use:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-The application will open in your browser.
+## 💻 Technologies Used
 
-## 🔄 How It Works
+- Python
+- Streamlit
 
-1. Click **Generate OTP**.
-2. The application generates a random 6-digit OTP.
-3. The OTP is stored temporarily in the Streamlit session.
-4. The OTP remains valid for **5 minutes**.
-5. Enter the generated OTP in the input field.
-6. Click **Verify OTP**.
-7. If the OTP matches and has not expired, verification is successful.
-8. If the OTP is incorrect, an error message is displayed.
-9. After 5 minutes, the OTP expires and a new OTP must be generated.
+## 📸 Preview
 
-## 🔐 Security
-
-This project uses Python's `secrets` module instead of the `random` module for OTP generation.
-
-The `secrets` module is designed for generating random values suitable for security-sensitive applications.
-
-> **Note:** This is an educational project. In a real authentication system, OTPs should normally be sent through a secure channel such as email or SMS rather than displayed directly on the screen.
-
-## 📌 Future Improvements
-
-Possible improvements include:
-
-* 📧 Send OTP through email
-* 📱 Send OTP through SMS
-* ⏱️ Add a live countdown timer
-* 🚫 Limit the number of verification attempts
-* 🔄 Add a "Resend OTP" feature
-* 🔒 Hash OTPs before storing them
-* 👤 Add user authentication
-* 📊 Add OTP verification logs
-
-## 👨‍💻 Author
-
-**Vedant Acharya**
+Enter your marks and click **Check Grade** to view your grade instantly.
 
 ## 📄 License
 
-This project is open-source and available for educational purposes.
+This project is open source and available under the MIT License.
