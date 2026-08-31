@@ -1,97 +1,109 @@
 import streamlit as st
-import requests
 
-st.set_page_config(
-    page_title="Currency Converter",
-    page_icon="💱",
-    layout="centered"
-)
+st.set_page_config(page_title="Unit Converter", page_icon="📏", layout="centered")
 
-st.title("💱 Currency Converter")
-st.write("Convert currencies using the latest exchange rates.")
+st.title("📏 Unit Converter")
+st.write("Convert common units quickly and easily.")
 
-# Currency list
-currencies = {
-    "USD": "US Dollar",
-    "INR": "Indian Rupee",
-    "EUR": "Euro",
-    "GBP": "British Pound",
-    "JPY": "Japanese Yen",
-    "AUD": "Australian Dollar",
-    "CAD": "Canadian Dollar",
-    "CHF": "Swiss Franc",
-    "CNY": "Chinese Yuan",
-    "AED": "UAE Dirham"
+# -----------------------------
+# Conversion Data
+# -----------------------------
+length_units = {
+    "Meter": 1,
+    "Kilometer": 1000,
+    "Centimeter": 0.01,
+    "Millimeter": 0.001
 }
 
-# Input
-amount = st.number_input(
-    "Enter amount",
-    min_value=0.01,
-    value=100.0,
-    step=1.0
+weight_units = {
+    "Kilogram": 1,
+    "Gram": 0.001,
+    "Milligram": 0.000001,
+    "Pound": 0.453592
+}
+
+time_units = {
+    "Second": 1,
+    "Minute": 60,
+    "Hour": 3600,
+    "Day": 86400
+}
+
+category = st.selectbox(
+    "Select Category",
+    ["Length", "Weight", "Temperature", "Time"]
 )
 
-col1, col2 = st.columns(2)
+value = st.number_input("Enter Value", value=1.0)
 
-with col1:
-    from_currency = st.selectbox(
-        "From",
-        list(currencies.keys()),
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
+# -----------------------------
+# LENGTH
+# -----------------------------
+if category == "Length":
 
-with col2:
-    to_currency = st.selectbox(
-        "To",
-        list(currencies.keys()),
-        index=1,
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
+    from_unit = st.selectbox("From", list(length_units.keys()))
+    to_unit = st.selectbox("To", list(length_units.keys()))
 
-if st.button("Convert 💱", use_container_width=True):
+    result = value * length_units[from_unit] / length_units[to_unit]
 
-    if from_currency == to_currency:
-        result = amount
-        rate = 1
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-    else:
-        try:
-            url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
+# -----------------------------
+# WEIGHT
+# -----------------------------
+elif category == "Weight":
 
-            response = requests.get(url, timeout=10)
+    from_unit = st.selectbox("From", list(weight_units.keys()))
+    to_unit = st.selectbox("To", list(weight_units.keys()))
 
-            if response.status_code == 200:
-                data = response.json()
+    result = value * weight_units[from_unit] / weight_units[to_unit]
 
-                result = data["rates"][to_currency]
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-                # Get exchange rate for 1 unit
-                rate_url = (
-                    f"https://api.frankfurter.app/latest"
-                    f"?amount=1&from={from_currency}&to={to_currency}"
-                )
+# -----------------------------
+# TIME
+# -----------------------------
+elif category == "Time":
 
-                rate_response = requests.get(rate_url, timeout=10)
-                rate_data = rate_response.json()
+    from_unit = st.selectbox("From", list(time_units.keys()))
+    to_unit = st.selectbox("To", list(time_units.keys()))
 
-                rate = rate_data["rates"][to_currency]
+    result = value * time_units[from_unit] / time_units[to_unit]
 
-            else:
-                st.error("Unable to fetch exchange rate.")
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-        except requests.exceptions.RequestException:
-            st.error("Internet connection or API error.")
+# -----------------------------
+# TEMPERATURE
+# -----------------------------
+elif category == "Temperature":
 
-        except Exception as e:
-            st.error(f"Something went wrong: {e}")
+    temp_units = ["Celsius", "Fahrenheit", "Kelvin"]
 
-    # Display result
-    st.success(
-        f"{amount:,.2f} {from_currency} = "
-        f"{result:,.2f} {to_currency}"
-    )
+    from_unit = st.selectbox("From", temp_units)
+    to_unit = st.selectbox("To", temp_units)
 
-    st.info(
-        f"1 {from_currency} = {rate:.4f} {to_currency}"
-    )
+    if from_unit == to_unit:
+        result = value
+
+    elif from_unit == "Celsius" and to_unit == "Fahrenheit":
+        result = (value * 9/5) + 32
+
+    elif from_unit == "Fahrenheit" and to_unit == "Celsius":
+        result = (value - 32) * 5/9
+
+    elif from_unit == "Celsius" and to_unit == "Kelvin":
+        result = value + 273.15
+
+    elif from_unit == "Kelvin" and to_unit == "Celsius":
+        result = value - 273.15
+
+    elif from_unit == "Fahrenheit" and to_unit == "Kelvin":
+        result = (value - 32) * 5/9 + 273.15
+
+    elif from_unit == "Kelvin" and to_unit == "Fahrenheit":
+        result = (value - 273.15) * 9/5 + 32
+
+    st.success(f"Result: {result:.2f} {to_unit}")
+
+st.markdown("---")
+st.caption("Made with ❤️ using Streamlit")

@@ -1,173 +1,135 @@
-# 💱 Currency Converter
+# 📏 Unit Converter
 
-A simple and user-friendly **Currency Converter web application** built with **Python and Streamlit**. It allows users to convert an amount from one currency to another using the latest available exchange rates.
+A simple and user-friendly Unit Converter built with **Python** and **Streamlit**. This application allows users to quickly convert values between common units in different categories.
 
 Link:
 
 ## 🚀 Features
 
-* 💱 Convert between multiple currencies
-* 🌐 Uses live exchange-rate data
-* 💰 Enter any amount for conversion
-* 🔄 Select source and target currencies
-* 📊 Displays the converted amount
-* 📈 Displays the current exchange rate
-* ⚠️ Handles API and internet connection errors
-* 📱 Responsive Streamlit interface
+- 📏 Length Conversion
+  - Meter
+  - Kilometer
+  - Centimeter
+  - Millimeter
+
+- ⚖️ Weight Conversion
+  - Kilogram
+  - Gram
+  - Milligram
+  - Pound
+
+- 🌡️ Temperature Conversion
+  - Celsius
+  - Fahrenheit
+  - Kelvin
+
+- ⏰ Time Conversion
+  - Second
+  - Minute
+  - Hour
+  - Day
+
+- Simple and clean user interface
+- Instant conversion
+- Responsive Streamlit web app
+
+---
 
 ## 🛠️ Technologies Used
 
-* **Python**
-* **Streamlit**
-* **Requests**
-* **Frankfurter API**
+- Python 3
+- Streamlit
+
+---
 
 ## 📂 Project Structure
 
-```text
-Currency-Converter/
+```
+Unit-Converter/
 │
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
 ```
+
+---
 
 ## ⚙️ Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/currency-converter.git
+git clone https://github.com/vedantacharya21/unit-converter.git
 ```
 
-### 2. Open the project folder
+### 2. Navigate to the project folder
 
 ```bash
-cd currency-converter
+cd unit-converter
 ```
 
-### 3. Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
-### 4. Activate the virtual environment
-
-**Windows:**
-
-```bash
-venv\Scripts\activate
-```
-
-**macOS/Linux:**
-
-```bash
-source venv/bin/activate
-```
-
-### 5. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ▶️ Run the Application
-
-Run the following command:
+### 4. Run the application
 
 ```bash
-python -m streamlit run app.py
+streamlit run app.py
 ```
 
-The application will open in your browser.
+---
 
-## 💡 How It Works
+## 📷 Preview
 
-1. Enter the amount you want to convert.
-2. Select the currency you are converting **from**.
-3. Select the currency you want to convert **to**.
-4. Click the **Convert** button.
-5. The application fetches the latest exchange-rate information.
-6. The converted amount and exchange rate are displayed.
+The application provides an intuitive interface where users can:
 
-### Example
+- Select a conversion category
+- Choose the source unit
+- Choose the destination unit
+- Enter a value
+- View the converted result instantly
 
-```text
-100 USD → INR
+---
 
-100 USD = 8,xxx.xx INR
-1 USD = xx.xx INR
-```
+## 📌 Future Improvements
 
-The actual value depends on the exchange rate returned by the API.
+- Area Converter
+- Volume Converter
+- Speed Converter
+- Data Storage Converter
+- Energy Converter
+- Pressure Converter
+- Currency Converter
+- Conversion History
+- Swap Units Button
+- Dark Mode
+- Custom CSS Styling
+- Download Conversion History
 
-## 🌐 API
+---
 
-This project uses the **Frankfurter API** to retrieve exchange-rate information.
+## 🤝 Contributing
 
-API endpoint:
+Contributions are welcome!
 
-```text
-https://api.frankfurter.app/latest
-```
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
 
-No API key is required for the basic usage implemented in this project.
+---
 
-## 📋 Supported Currencies
+## 📄 License
 
-The current version supports:
+This project is open-source and available under the **MIT License**.
 
-* 🇺🇸 USD — US Dollar
-* 🇮🇳 INR — Indian Rupee
-* 🇪🇺 EUR — Euro
-* 🇬🇧 GBP — British Pound
-* 🇯🇵 JPY — Japanese Yen
-* 🇦🇺 AUD — Australian Dollar
-* 🇨🇦 CAD — Canadian Dollar
-* 🇨🇭 CHF — Swiss Franc
-* 🇨🇳 CNY — Chinese Yuan
-* 🇦🇪 AED — UAE Dirham
-
-## ⚠️ Error Handling
-
-The application handles:
-
-* Internet connection problems
-* API request failures
-* Invalid API responses
-* Unexpected errors
-
-## 🚀 Deployment
-
-This Streamlit application can be deployed on platforms such as:
-
-* Streamlit Community Cloud
-* Render
-* Other platforms that support Python/Streamlit applications
-
-For deployment, make sure `requirements.txt` is included in the repository.
-
-## 🔮 Future Improvements
-
-Possible improvements include:
-
-* 🔄 Add a currency swap button
-* 🌎 Support more currencies
-* 📅 Add historical exchange rates
-* 📊 Add exchange-rate charts
-* 💾 Cache exchange rates
-* 🕒 Display the last updated time
-* 🎨 Improve the UI with custom styling
-* 📱 Improve mobile responsiveness
-* 📈 Add historical currency trends
+---
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
-Computer Engineering Student
-
-## 📄 License
-
-This project is open-source and available for educational and personal use.
+If you found this project helpful, consider giving it a ⭐ on GitHub.
