@@ -1,135 +1,94 @@
-# 📏 Unit Converter
+# 🎓 CGPA / SPI to Percentage Calculator
 
-A simple and user-friendly Unit Converter built with **Python** and **Streamlit**. This application allows users to quickly convert values between common units in different categories.
+A simple and user-friendly **CGPA/SPI to Percentage Calculator** built using Python and Streamlit.
+
+This application allows students to convert their **CGPA or SPI into percentage** using a simple conversion formula.
 
 Link:
 
 ## 🚀 Features
 
-- 📏 Length Conversion
-  - Meter
-  - Kilometer
-  - Centimeter
-  - Millimeter
+* CGPA to Percentage conversion
+* SPI to Percentage conversion
+* Input validation between 0 and 10
+* Percentage displayed up to 2 decimal places
+* Simple and clean user interface
+* Built with Streamlit
 
-- ⚖️ Weight Conversion
-  - Kilogram
-  - Gram
-  - Milligram
-  - Pound
+## 🧮 Formula
 
-- 🌡️ Temperature Conversion
-  - Celsius
-  - Fahrenheit
-  - Kelvin
+The application uses the following formula:
 
-- ⏰ Time Conversion
-  - Second
-  - Minute
-  - Hour
-  - Day
+```text
+Percentage = CGPA/SPI × 9.5
+```
 
-- Simple and clean user interface
-- Instant conversion
-- Responsive Streamlit web app
+### Example
 
----
+If your CGPA is `8.5`:
+
+```text
+8.5 × 9.5 = 80.75%
+```
+
+> **Important:** The conversion formula can vary depending on the university or educational board. Verify the applicable formula before using the result for official purposes.
 
 ## 🛠️ Technologies Used
 
-- Python 3
-- Streamlit
-
----
+* Python
+* Streamlit
 
 ## 📂 Project Structure
 
-```
-Unit-Converter/
+```text
+CGPA-SPI-Calculator/
 │
 ├── app.py
 ├── requirements.txt
-├── README.md
+└── README.md
 ```
 
----
+## 💻 Run the Project Locally
 
-## ⚙️ Installation
-
-### 1. Clone the repository
+### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/unit-converter.git
+git clone https://github.com/vedantacharya21/cgpa-spi-calculator.git
 ```
 
-### 2. Navigate to the project folder
+### Step 2: Open the project folder
 
 ```bash
-cd unit-converter
+cd cgpa-spi-calculator
 ```
 
-### 3. Install dependencies
+### Step 3: Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the application
+### Step 4: Run the application
 
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
----
-
-## 📷 Preview
-
-The application provides an intuitive interface where users can:
-
-- Select a conversion category
-- Choose the source unit
-- Choose the destination unit
-- Enter a value
-- View the converted result instantly
-
----
+The application will open in your browser.
 
 ## 📌 Future Improvements
 
-- Area Converter
-- Volume Converter
-- Speed Converter
-- Data Storage Converter
-- Energy Converter
-- Pressure Converter
-- Currency Converter
-- Conversion History
-- Swap Units Button
-- Dark Mode
-- Custom CSS Styling
-- Download Conversion History
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a new branch
-3. Commit your changes
-4. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is open-source and available under the **MIT License**.
-
----
+* Add Percentage to CGPA conversion
+* Add university-specific conversion formulas
+* Add semester-wise SPI calculation
+* Add overall CGPA calculation
+* Add calculation history
+* Improve UI and customization
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+## 📄 License
+
+This project is open-source and available for educational purposes.
