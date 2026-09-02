@@ -1,38 +1,106 @@
 import streamlit as st
 
+# ---------------------------
+# Page Configuration
+# ---------------------------
 st.set_page_config(
-    page_title="CGPA/SPI to Percentage Calculator",
-    page_icon="🎓",
+    page_title="To-Do List",
+    page_icon="📝",
     layout="centered"
 )
 
-st.title("🎓 CGPA / SPI to Percentage Calculator")
-st.write("Convert your CGPA or SPI into percentage.")
+st.title("📝 To-Do List App")
+st.write("Manage your daily tasks easily.")
 
-st.divider()
+# ---------------------------
+# Session State
+# ---------------------------
+if "tasks" not in st.session_state:
+    st.session_state.tasks = []
 
-choice = st.selectbox(
-    "Choose Your Choice",
-    [
-        "CGPA to Percentage",
-        "SPI to Percentage"
-    ]
+# ---------------------------
+# Sidebar Menu
+# ---------------------------
+menu = st.sidebar.selectbox(
+    "Choose an Option",
+    (
+        "Add Task",
+        "Remove Task",
+        "View Tasks",
+        "Print Every Task"
+    )
 )
 
-value = st.number_input(
-    f"Enter {choice.split()[0]}",
-    min_value=0.0,
-    max_value=10.0,
-    value=0.0,
-    step=0.01,
-    format="%.2f"
-)
+# ---------------------------
+# Add Task
+# ---------------------------
+if menu == "Add Task":
 
-if st.button("Calculate Percentage"):
-    percentage = value * 9.5
+    st.subheader("➕ Add New Task")
 
-    st.success(f"Percentage: {percentage:.2f}%")
+    task = st.text_input("Enter Task")
 
-st.divider()
+    if st.button("Add Task"):
 
-st.info("Note: The conversion formula used is Percentage = CGPA/SPI × 9.5.")
+        if task.strip() == "":
+            st.warning("Task cannot be empty.")
+        else:
+            st.session_state.tasks.append(task)
+            st.success("Task Added Successfully!")
+
+# ---------------------------
+# Remove Task
+# ---------------------------
+elif menu == "Remove Task":
+
+    st.subheader("❌ Remove Task")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Available.")
+    else:
+
+        selected_task = st.selectbox(
+            "Select Task",
+            st.session_state.tasks
+        )
+
+        if st.button("Remove Task"):
+
+            st.session_state.tasks.remove(selected_task)
+
+            st.success("Task Removed Successfully!")
+
+# ---------------------------
+# View Tasks
+# ---------------------------
+elif menu == "View Tasks":
+
+    st.subheader("📋 Your Tasks")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Found.")
+    else:
+
+        for i, task in enumerate(st.session_state.tasks, start=1):
+            st.write(f"**{i}.** {task}")
+
+# ---------------------------
+# Print Every Task
+# ---------------------------
+elif menu == "Print Every Task":
+
+    st.subheader("🖨️ Print Every Task")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Found.")
+    else:
+
+        for i, task in enumerate(st.session_state.tasks, start=1):
+
+            st.markdown(f"""
+### Task {i}
+
+{task}
+
+---
+""")

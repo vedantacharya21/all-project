@@ -1,94 +1,95 @@
-# 🎓 CGPA / SPI to Percentage Calculator
+# 📝 To-Do List App
 
-A simple and user-friendly **CGPA/SPI to Percentage Calculator** built using Python and Streamlit.
-
-This application allows students to convert their **CGPA or SPI into percentage** using a simple conversion formula.
+A simple and interactive **To-Do List** web application built using **Python** and **Streamlit**. This application helps users manage their daily tasks with an easy-to-use interface.
 
 Link:
 
 ## 🚀 Features
 
-* CGPA to Percentage conversion
-* SPI to Percentage conversion
-* Input validation between 0 and 10
-* Percentage displayed up to 2 decimal places
-* Simple and clean user interface
-* Built with Streamlit
-
-## 🧮 Formula
-
-The application uses the following formula:
-
-```text
-Percentage = CGPA/SPI × 9.5
-```
-
-### Example
-
-If your CGPA is `8.5`:
-
-```text
-8.5 × 9.5 = 80.75%
-```
-
-> **Important:** The conversion formula can vary depending on the university or educational board. Verify the applicable formula before using the result for official purposes.
+- ➕ Add New Tasks
+- ❌ Remove Existing Tasks
+- 📋 View All Tasks
+- 🖨️ Print Every Task
+- 💾 Session-based task storage using Streamlit Session State
+- 🎨 Clean and responsive user interface
 
 ## 🛠️ Technologies Used
 
-* Python
-* Streamlit
+- Python 3
+- Streamlit
 
 ## 📂 Project Structure
 
-```text
-CGPA-SPI-Calculator/
+```
+Todo-List/
 │
 ├── app.py
-├── requirements.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
-## 💻 Run the Project Locally
+## 📦 Installation
 
-### Step 1: Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/cgpa-spi-calculator.git
+git clone https://github.com/vedantacharya21/todo-list.git
 ```
 
-### Step 2: Open the project folder
+### 2. Navigate to the project folder
 
 ```bash
-cd cgpa-spi-calculator
+cd todo-list
 ```
 
-### Step 3: Install dependencies
+### 3. Install the required packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Run the application
+## ▶️ Run the Application
 
 ```bash
-python -m streamlit run app.py
+streamlit run app.py
 ```
 
-The application will open in your browser.
+The application will open automatically in your default web browser.
 
-## 📌 Future Improvements
+## 📖 How to Use
 
-* Add Percentage to CGPA conversion
-* Add university-specific conversion formulas
-* Add semester-wise SPI calculation
-* Add overall CGPA calculation
-* Add calculation history
-* Improve UI and customization
+1. Select an option from the sidebar.
+2. Add a new task.
+3. View all your tasks.
+4. Remove completed or unwanted tasks.
+5. Print all tasks in a formatted view.
 
-## 👨‍💻 Author
+## 📸 Features Overview
 
-**Vedant Acharya**
+- Add Task
+- Remove Task
+- View Tasks
+- Print Every Task
+
+## 🔮 Future Improvements
+
+- ✅ Edit Tasks
+- ✅ Mark Tasks as Completed
+- ⭐ Task Priority
+- 📅 Due Dates
+- 💾 Save Tasks Permanently
+- 🔍 Search Tasks
+- 🗑️ Clear All Tasks
+- 📊 Task Statistics Dashboard
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit a pull request.
 
 ## 📄 License
 
-This project is open-source and available for educational purposes.
+This project is licensed under the MIT License.
+
+---
+
+Developed with ❤️ using Python and Streamlit.
