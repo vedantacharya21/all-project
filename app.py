@@ -1,106 +1,109 @@
 import streamlit as st
 
-# ---------------------------
-# Page Configuration
-# ---------------------------
-st.set_page_config(
-    page_title="To-Do List",
-    page_icon="📝",
-    layout="centered"
+st.set_page_config(page_title="Unit Converter", page_icon="📏", layout="centered")
+
+st.title("📏 Unit Converter")
+st.write("Convert common units quickly and easily.")
+
+# -----------------------------
+# Conversion Data
+# -----------------------------
+length_units = {
+    "Meter": 1,
+    "Kilometer": 1000,
+    "Centimeter": 0.01,
+    "Millimeter": 0.001
+}
+
+weight_units = {
+    "Kilogram": 1,
+    "Gram": 0.001,
+    "Milligram": 0.000001,
+    "Pound": 0.453592
+}
+
+time_units = {
+    "Second": 1,
+    "Minute": 60,
+    "Hour": 3600,
+    "Day": 86400
+}
+
+category = st.selectbox(
+    "Select Category",
+    ["Length", "Weight", "Temperature", "Time"]
 )
 
-st.title("📝 To-Do List App")
-st.write("Manage your daily tasks easily.")
+value = st.number_input("Enter Value", value=1.0)
 
-# ---------------------------
-# Session State
-# ---------------------------
-if "tasks" not in st.session_state:
-    st.session_state.tasks = []
+# -----------------------------
+# LENGTH
+# -----------------------------
+if category == "Length":
 
-# ---------------------------
-# Sidebar Menu
-# ---------------------------
-menu = st.sidebar.selectbox(
-    "Choose an Option",
-    (
-        "Add Task",
-        "Remove Task",
-        "View Tasks",
-        "Print Every Task"
-    )
-)
+    from_unit = st.selectbox("From", list(length_units.keys()))
+    to_unit = st.selectbox("To", list(length_units.keys()))
 
-# ---------------------------
-# Add Task
-# ---------------------------
-if menu == "Add Task":
+    result = value * length_units[from_unit] / length_units[to_unit]
 
-    st.subheader("➕ Add New Task")
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-    task = st.text_input("Enter Task")
+# -----------------------------
+# WEIGHT
+# -----------------------------
+elif category == "Weight":
 
-    if st.button("Add Task"):
+    from_unit = st.selectbox("From", list(weight_units.keys()))
+    to_unit = st.selectbox("To", list(weight_units.keys()))
 
-        if task.strip() == "":
-            st.warning("Task cannot be empty.")
-        else:
-            st.session_state.tasks.append(task)
-            st.success("Task Added Successfully!")
+    result = value * weight_units[from_unit] / weight_units[to_unit]
 
-# ---------------------------
-# Remove Task
-# ---------------------------
-elif menu == "Remove Task":
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-    st.subheader("❌ Remove Task")
+# -----------------------------
+# TIME
+# -----------------------------
+elif category == "Time":
 
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Available.")
-    else:
+    from_unit = st.selectbox("From", list(time_units.keys()))
+    to_unit = st.selectbox("To", list(time_units.keys()))
 
-        selected_task = st.selectbox(
-            "Select Task",
-            st.session_state.tasks
-        )
+    result = value * time_units[from_unit] / time_units[to_unit]
 
-        if st.button("Remove Task"):
+    st.success(f"Result: {result:.4f} {to_unit}")
 
-            st.session_state.tasks.remove(selected_task)
+# -----------------------------
+# TEMPERATURE
+# -----------------------------
+elif category == "Temperature":
 
-            st.success("Task Removed Successfully!")
+    temp_units = ["Celsius", "Fahrenheit", "Kelvin"]
 
-# ---------------------------
-# View Tasks
-# ---------------------------
-elif menu == "View Tasks":
+    from_unit = st.selectbox("From", temp_units)
+    to_unit = st.selectbox("To", temp_units)
 
-    st.subheader("📋 Your Tasks")
+    if from_unit == to_unit:
+        result = value
 
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Found.")
-    else:
+    elif from_unit == "Celsius" and to_unit == "Fahrenheit":
+        result = (value * 9/5) + 32
 
-        for i, task in enumerate(st.session_state.tasks, start=1):
-            st.write(f"**{i}.** {task}")
+    elif from_unit == "Fahrenheit" and to_unit == "Celsius":
+        result = (value - 32) * 5/9
 
-# ---------------------------
-# Print Every Task
-# ---------------------------
-elif menu == "Print Every Task":
+    elif from_unit == "Celsius" and to_unit == "Kelvin":
+        result = value + 273.15
 
-    st.subheader("🖨️ Print Every Task")
+    elif from_unit == "Kelvin" and to_unit == "Celsius":
+        result = value - 273.15
 
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Found.")
-    else:
+    elif from_unit == "Fahrenheit" and to_unit == "Kelvin":
+        result = (value - 32) * 5/9 + 273.15
 
-        for i, task in enumerate(st.session_state.tasks, start=1):
+    elif from_unit == "Kelvin" and to_unit == "Fahrenheit":
+        result = (value - 273.15) * 9/5 + 32
 
-            st.markdown(f"""
-### Task {i}
+    st.success(f"Result: {result:.2f} {to_unit}")
 
-{task}
-
----
-""")
+st.markdown("---")
+st.caption("Made with ❤️ using Streamlit")
