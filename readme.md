@@ -1,71 +1,56 @@
-# 📏 Unit Converter
+# 🔳 QR Code Generator
 
-A simple and user-friendly Unit Converter built with **Python** and **Streamlit**. This application allows users to quickly convert values between common units in different categories.
+A modern QR Code Generator built with **Python** and **Streamlit**. Generate QR codes for text, URLs, and other information with customizable colors and sizes, then download them as PNG images.
+
+---
 
 Link:
 
 ## 🚀 Features
 
-- 📏 Length Conversion
-  - Meter
-  - Kilometer
-  - Centimeter
-  - Millimeter
-
-- ⚖️ Weight Conversion
-  - Kilogram
-  - Gram
-  - Milligram
-  - Pound
-
-- 🌡️ Temperature Conversion
-  - Celsius
-  - Fahrenheit
-  - Kelvin
-
-- ⏰ Time Conversion
-  - Second
-  - Minute
-  - Hour
-  - Day
-
-- Simple and clean user interface
-- Instant conversion
-- Responsive Streamlit web app
+- Generate QR codes instantly
+- Supports text and URLs
+- Custom QR code size
+- Custom foreground color
+- Custom background color
+- Live QR code preview
+- Download QR code as PNG
+- Responsive Streamlit interface
 
 ---
 
 ## 🛠️ Technologies Used
 
-- Python 3
+- Python
 - Streamlit
+- qrcode
+- Pillow
 
 ---
 
 ## 📂 Project Structure
 
 ```
-Unit-Converter/
-│
-├── app.py
-├── requirements.txt
-├── README.md
+QR-Code-Generator/
+│── app.py
+│── requirements.txt
+│── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## 📦 Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/unit-converter.git
+git clone https://github.com/vedantacharya21/QR-Code-Generator.git
 ```
 
 ### 2. Navigate to the project folder
 
 ```bash
-cd unit-converter
+cd QR-Code-Generator
 ```
 
 ### 3. Install dependencies
@@ -74,57 +59,64 @@ cd unit-converter
 pip install -r requirements.txt
 ```
 
-### 4. Run the application
+---
+
+## ▶️ Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
----
+If Streamlit is not recognized:
 
-## 📷 Preview
-
-The application provides an intuitive interface where users can:
-
-- Select a conversion category
-- Choose the source unit
-- Choose the destination unit
-- Enter a value
-- View the converted result instantly
+```bash
+python -m streamlit run app.py
+```
 
 ---
 
-## 📌 Future Improvements
+## 📖 How to Use
 
-- Area Converter
-- Volume Converter
-- Speed Converter
-- Data Storage Converter
-- Energy Converter
-- Pressure Converter
-- Currency Converter
-- Conversion History
-- Swap Units Button
+1. Enter text or a URL.
+2. Enter a filename.
+3. Select the QR code size.
+4. Choose QR and background colors.
+5. Click **Generate QR Code**.
+6. Preview the generated QR code.
+7. Download it as a PNG image.
+
+---
+
+## 🔮 Future Improvements
+
+- Support WiFi QR Codes
+- Email QR Codes
+- Phone Number QR Codes
+- SMS QR Codes
+- UPI Payment QR Codes
+- Contact (vCard) QR Codes
+- Logo inside QR Code
+- SVG Download
+- QR History
 - Dark Mode
-- Custom CSS Styling
-- Download Conversion History
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions are welcome.
 
-1. Fork the repository
-2. Create a new branch
-3. Commit your changes
-4. Open a Pull Request
+1. Fork the repository.
+2. Create a new branch.
+3. Commit your changes.
+4. Push the branch.
+5. Open a Pull Request.
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the **MIT License**.
+This project is licensed under the MIT License.
 
 ---
 
@@ -132,4 +124,8 @@ This project is open-source and available under the **MIT License**.
 
 **Vedant Acharya**
 
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+GitHub: https://github.com/vedantacharya21
+
+Portfolio: https://vedantacharya.netlify.app/
+
+LinkedIn: https://linkedin.com/in/vedant-acharya-71b012374/

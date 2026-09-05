@@ -1,109 +1,111 @@
 import streamlit as st
-
-st.set_page_config(page_title="Unit Converter", page_icon="📏", layout="centered")
-
-st.title("📏 Unit Converter")
-st.write("Convert common units quickly and easily.")
+import qrcode
+from qrcode.constants import ERROR_CORRECT_L
+from PIL import Image
+from io import BytesIO
 
 # -----------------------------
-# Conversion Data
+# Page Configuration
 # -----------------------------
-length_units = {
-    "Meter": 1,
-    "Kilometer": 1000,
-    "Centimeter": 0.01,
-    "Millimeter": 0.001
-}
-
-weight_units = {
-    "Kilogram": 1,
-    "Gram": 0.001,
-    "Milligram": 0.000001,
-    "Pound": 0.453592
-}
-
-time_units = {
-    "Second": 1,
-    "Minute": 60,
-    "Hour": 3600,
-    "Day": 86400
-}
-
-category = st.selectbox(
-    "Select Category",
-    ["Length", "Weight", "Temperature", "Time"]
+st.set_page_config(
+    page_title="QR Code Generator",
+    page_icon="🔳",
+    layout="centered"
 )
 
-value = st.number_input("Enter Value", value=1.0)
+# -----------------------------
+# Function to Generate QR Code
+# -----------------------------
+def generate_qr(data, box_size, fill_color, back_color):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=ERROR_CORRECT_L,
+        box_size=box_size,
+        border=4
+    )
+
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    img = qr.make_image(
+        fill_color=fill_color,
+        back_color=back_color
+    ).convert("RGB")
+
+    return img
+
 
 # -----------------------------
-# LENGTH
+# UI
 # -----------------------------
-if category == "Length":
+st.title("🔳 QR Code Generator")
+st.write("Generate QR Codes from Text or URLs.")
 
-    from_unit = st.selectbox("From", list(length_units.keys()))
-    to_unit = st.selectbox("To", list(length_units.keys()))
+data = st.text_area(
+    "Enter Text or URL",
+    placeholder="https://example.com"
+)
 
-    result = value * length_units[from_unit] / length_units[to_unit]
+filename = st.text_input(
+    "File Name",
+    value="qr_code"
+)
 
-    st.success(f"Result: {result:.4f} {to_unit}")
+box_size = st.slider(
+    "QR Size",
+    min_value=5,
+    max_value=20,
+    value=10
+)
 
-# -----------------------------
-# WEIGHT
-# -----------------------------
-elif category == "Weight":
+fill_color = st.color_picker(
+    "QR Color",
+    "#000000"
+)
 
-    from_unit = st.selectbox("From", list(weight_units.keys()))
-    to_unit = st.selectbox("To", list(weight_units.keys()))
-
-    result = value * weight_units[from_unit] / weight_units[to_unit]
-
-    st.success(f"Result: {result:.4f} {to_unit}")
-
-# -----------------------------
-# TIME
-# -----------------------------
-elif category == "Time":
-
-    from_unit = st.selectbox("From", list(time_units.keys()))
-    to_unit = st.selectbox("To", list(time_units.keys()))
-
-    result = value * time_units[from_unit] / time_units[to_unit]
-
-    st.success(f"Result: {result:.4f} {to_unit}")
+back_color = st.color_picker(
+    "Background Color",
+    "#FFFFFF"
+)
 
 # -----------------------------
-# TEMPERATURE
+# Generate Button
 # -----------------------------
-elif category == "Temperature":
+if st.button("Generate QR Code", use_container_width=True):
 
-    temp_units = ["Celsius", "Fahrenheit", "Kelvin"]
+    if data.strip() == "":
+        st.warning("Please enter some text or a URL.")
 
-    from_unit = st.selectbox("From", temp_units)
-    to_unit = st.selectbox("To", temp_units)
+    else:
+        try:
+            img = generate_qr(
+                data,
+                box_size,
+                fill_color,
+                back_color
+            )
 
-    if from_unit == to_unit:
-        result = value
+            st.success("QR Code Generated Successfully!")
 
-    elif from_unit == "Celsius" and to_unit == "Fahrenheit":
-        result = (value * 9/5) + 32
+            st.image(
+                img,
+                caption="Generated QR Code",
+                use_container_width=True
+            )
 
-    elif from_unit == "Fahrenheit" and to_unit == "Celsius":
-        result = (value - 32) * 5/9
+            # Save image in memory
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            buffer.seek(0)
 
-    elif from_unit == "Celsius" and to_unit == "Kelvin":
-        result = value + 273.15
+            # Download Button
+            st.download_button(
+                label="📥 Download QR Code",
+                data=buffer.getvalue(),
+                file_name=f"{filename}.png",
+                mime="image/png",
+                use_container_width=True
+            )
 
-    elif from_unit == "Kelvin" and to_unit == "Celsius":
-        result = value - 273.15
-
-    elif from_unit == "Fahrenheit" and to_unit == "Kelvin":
-        result = (value - 32) * 5/9 + 273.15
-
-    elif from_unit == "Kelvin" and to_unit == "Fahrenheit":
-        result = (value - 273.15) * 9/5 + 32
-
-    st.success(f"Result: {result:.2f} {to_unit}")
-
-st.markdown("---")
-st.caption("Made with ❤️ using Streamlit")
+        except Exception as e:
+            st.error(f"Error: {e}")
