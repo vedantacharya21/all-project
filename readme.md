@@ -1,131 +1,81 @@
-# 🔳 QR Code Generator
+# 🎓 Grade Checker
 
-A modern QR Code Generator built with **Python** and **Streamlit**. Generate QR codes for text, URLs, and other information with customizable colors and sizes, then download them as PNG images.
-
----
+A simple and interactive Grade Checker web application built with **Python** and **Streamlit**. Enter your marks (0–100) and instantly find your grade.
 
 Link:
 
 ## 🚀 Features
 
-- Generate QR codes instantly
-- Supports text and URLs
-- Custom QR code size
-- Custom foreground color
-- Custom background color
-- Live QR code preview
-- Download QR code as PNG
-- Responsive Streamlit interface
+- Simple and clean user interface
+- Instant grade calculation
+- Input validation (0–100 marks)
+- Responsive Streamlit web app
 
----
+## 🏆 Grade Criteria
 
-## 🛠️ Technologies Used
-
-- Python
-- Streamlit
-- qrcode
-- Pillow
-
----
+| Marks | Grade |
+|-------:|:-----:|
+| 90 – 100 | A1 |
+| 80 – 89 | A2 |
+| 70 – 79 | B1 |
+| 60 – 69 | B2 |
+| 50 – 59 | C1 |
+| 40 – 49 | C2 |
+| 33 – 39 | D |
+| 21 – 32 | E1 |
+| 0 – 20 | E2 |
 
 ## 📂 Project Structure
 
 ```
-QR-Code-Generator/
-│── app.py
-│── requirements.txt
-│── README.md
+grade-checker/
+│
+├── app.py
+├── requirements.txt
+├── README.md
 ```
 
----
+## 🛠️ Installation
 
-## 📦 Installation
-
-### 1. Clone the repository
+1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/QR-Code-Generator.git
+git clone https://github.com/vedantacharya21/grade-checker.git
 ```
 
-### 2. Navigate to the project folder
+2. Navigate to the project directory
 
 ```bash
-cd QR-Code-Generator
+cd grade-checker
 ```
 
-### 3. Install dependencies
+3. Install the required packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Run the Application
+4. Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-If Streamlit is not recognized:
+If the above command doesn't work, use:
 
 ```bash
 python -m streamlit run app.py
 ```
 
----
+## 💻 Technologies Used
 
-## 📖 How to Use
+- Python
+- Streamlit
 
-1. Enter text or a URL.
-2. Enter a filename.
-3. Select the QR code size.
-4. Choose QR and background colors.
-5. Click **Generate QR Code**.
-6. Preview the generated QR code.
-7. Download it as a PNG image.
+## 📸 Preview
 
----
-
-## 🔮 Future Improvements
-
-- Support WiFi QR Codes
-- Email QR Codes
-- Phone Number QR Codes
-- SMS QR Codes
-- UPI Payment QR Codes
-- Contact (vCard) QR Codes
-- Logo inside QR Code
-- SVG Download
-- QR History
-- Dark Mode
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a new branch.
-3. Commit your changes.
-4. Push the branch.
-5. Open a Pull Request.
-
----
+Enter your marks and click **Check Grade** to view your grade instantly.
 
 ## 📄 License
 
-This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-**Vedant Acharya**
-
-GitHub: https://github.com/vedantacharya21
-
-Portfolio: https://vedantacharya.netlify.app/
-
-LinkedIn: https://linkedin.com/in/vedant-acharya-71b012374/
+This project is open source and available under the MIT License.
