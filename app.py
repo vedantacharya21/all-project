@@ -1,45 +1,38 @@
 import streamlit as st
 
-# Page Configuration
 st.set_page_config(
-    page_title="Grade Checker",
-    page_icon="🎓",
+    page_title="Calculator",
+    page_icon="🧮",
     layout="centered"
 )
 
-st.title("🎓 Grade Checker")
-st.write("Enter your marks to check your grade.")
+st.title("🧮 Calculator")
+st.write("A simple calculator built with Python and Streamlit.")
 
-st.divider()
+num1 = st.number_input("Enter first number", value=0.0)
+num2 = st.number_input("Enter second number", value=0.0)
 
-# User Input
-marks = st.number_input(
-    "Enter Your Marks",
-    min_value=0.0,
-    max_value=100.0,
-    step=0.1
+operation = st.selectbox(
+    "Choose an operation",
+    ["Addition (+)", "Subtraction (-)", "Multiplication (×)", "Division (÷)"]
 )
 
-# Button
-if st.button("Check Grade"):
+if st.button("Calculate"):
+    if operation == "Addition (+)":
+        result = num1 + num2
+        st.success(f"Result: {result}")
 
-    if 90 <= marks <= 100:
-        grade = "A1"
-    elif 80 <= marks < 90:
-        grade = "A2"
-    elif 70 <= marks < 80:
-        grade = "B1"
-    elif 60 <= marks < 70:
-        grade = "B2"
-    elif 50 <= marks < 60:
-        grade = "C1"
-    elif 40 <= marks < 50:
-        grade = "C2"
-    elif 33 <= marks < 40:
-        grade = "D"
-    elif 21 <= marks < 33:
-        grade = "E1"
-    else:
-        grade = "E2"
+    elif operation == "Subtraction (-)":
+        result = num1 - num2
+        st.success(f"Result: {result}")
 
-    st.success(f"🎉 Your Grade is: **{grade}**")
+    elif operation == "Multiplication (×)":
+        result = num1 * num2
+        st.success(f"Result: {result}")
+
+    elif operation == "Division (÷)":
+        if num2 == 0:
+            st.error("Cannot divide by zero.")
+        else:
+            result = num1 / num2
+            st.success(f"Result: {result}")

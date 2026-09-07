@@ -1,81 +1,105 @@
-# 🎓 Grade Checker
+# 🧮 Calculator Using Python & Streamlit
 
-A simple and interactive Grade Checker web application built with **Python** and **Streamlit**. Enter your marks (0–100) and instantly find your grade.
+A simple and beginner-friendly calculator built using **Python** and **Streamlit**.
+
+This project performs basic mathematical operations through a simple web interface.
 
 Link:
 
 ## 🚀 Features
 
-- Simple and clean user interface
-- Instant grade calculation
-- Input validation (0–100 marks)
-- Responsive Streamlit web app
+* Addition
+* Subtraction
+* Multiplication
+* Division
+* Division-by-zero error handling
+* Simple and clean Streamlit interface
 
-## 🏆 Grade Criteria
+## 🛠️ Technologies Used
 
-| Marks | Grade |
-|-------:|:-----:|
-| 90 – 100 | A1 |
-| 80 – 89 | A2 |
-| 70 – 79 | B1 |
-| 60 – 69 | B2 |
-| 50 – 59 | C1 |
-| 40 – 49 | C2 |
-| 33 – 39 | D |
-| 21 – 32 | E1 |
-| 0 – 20 | E2 |
+* Python
+* Streamlit
 
-## 📂 Project Structure
+## 📁 Project Structure
 
-```
-grade-checker/
+```text
+Calculator/
 │
 ├── app.py
 ├── requirements.txt
-├── README.md
+└── README.md
 ```
 
-## 🛠️ Installation
+## ⚙️ Installation
 
-1. Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/grade-checker.git
+git clone https://github.com/vedantacharya21/calculator.git
 ```
 
-2. Navigate to the project directory
+### 2. Open the project folder
 
 ```bash
-cd grade-checker
+cd calculator
 ```
 
-3. Install the required packages
+### 3. Install the required library
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application
+## ▶️ Run the Application
 
-```bash
-streamlit run app.py
-```
-
-If the above command doesn't work, use:
+Run the following command:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-## 💻 Technologies Used
+The application will open in your browser.
 
-- Python
-- Streamlit
+## 🧮 How It Works
 
-## 📸 Preview
+1. Enter the first number.
+2. Enter the second number.
+3. Select an operation.
+4. Click **Calculate**.
+5. The result will be displayed on the screen.
 
-Enter your marks and click **Check Grade** to view your grade instantly.
+## 📌 Example
+
+If:
+
+```text
+First Number: 20
+Second Number: 5
+Operation: Division
+```
+
+The output will be:
+
+```text
+Result: 4.0
+```
+
+## ⚠️ Error Handling
+
+The calculator prevents division by zero.
+
+For example:
+
+```text
+10 ÷ 0
+```
+
+will display:
+
+```text
+Cannot divide by zero.
+```
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open-source and available for learning and educational purposes.
