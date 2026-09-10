@@ -1,97 +1,99 @@
 import streamlit as st
-import requests
 
+# Page Configuration
 st.set_page_config(
-    page_title="Currency Converter",
-    page_icon="💱",
+    page_title="BMI Calculator",
+    page_icon="⚖️",
     layout="centered"
 )
 
-st.title("💱 Currency Converter")
-st.write("Convert currencies using the latest exchange rates.")
+st.title("⚖️ BMI Calculator")
+st.write("Calculate your BMI and check whether your weight is in the healthy range.")
 
-# Currency list
-currencies = {
-    "USD": "US Dollar",
-    "INR": "Indian Rupee",
-    "EUR": "Euro",
-    "GBP": "British Pound",
-    "JPY": "Japanese Yen",
-    "AUD": "Australian Dollar",
-    "CAD": "Canadian Dollar",
-    "CHF": "Swiss Franc",
-    "CNY": "Chinese Yuan",
-    "AED": "UAE Dirham"
-}
+st.divider()
 
-# Input
-amount = st.number_input(
-    "Enter amount",
-    min_value=0.01,
-    value=100.0,
-    step=1.0
+# User Inputs
+weight = st.number_input(
+    "Enter Your Weight (kg)",
+    min_value=0.0,
+    format="%.1f"
 )
 
-col1, col2 = st.columns(2)
+height_cm = st.number_input(
+    "Enter Your Height (cm)",
+    min_value=0.0,
+    format="%.1f"
+)
 
-with col1:
-    from_currency = st.selectbox(
-        "From",
-        list(currencies.keys()),
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
+if st.button("Calculate BMI"):
 
-with col2:
-    to_currency = st.selectbox(
-        "To",
-        list(currencies.keys()),
-        index=1,
-        format_func=lambda x: f"{x} - {currencies[x]}"
-    )
-
-if st.button("Convert 💱", use_container_width=True):
-
-    if from_currency == to_currency:
-        result = amount
-        rate = 1
-
+    if weight <= 0:
+        st.error("Weight must be greater than 0 kg.")
+    elif height_cm <= 0:
+        st.error("Height must be greater than 0 cm.")
     else:
-        try:
-            url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
+        height = height_cm / 100
 
-            response = requests.get(url, timeout=10)
+        bmi = weight / (height ** 2)
 
-            if response.status_code == 200:
-                data = response.json()
+        st.subheader("Your Result")
 
-                result = data["rates"][to_currency]
+        st.metric("BMI", f"{bmi:.2f}")
 
-                # Get exchange rate for 1 unit
-                rate_url = (
-                    f"https://api.frankfurter.app/latest"
-                    f"?amount=1&from={from_currency}&to={to_currency}"
-                )
+        # BMI Category
+        if bmi < 18.5:
+            category = "Underweight"
+            color = "🟡"
+        elif bmi < 25:
+            category = "Normal Weight"
+            color = "🟢"
+        elif bmi < 30:
+            category = "Overweight"
+            color = "🟠"
+        else:
+            category = "Obese"
+            color = "🔴"
 
-                rate_response = requests.get(rate_url, timeout=10)
-                rate_data = rate_response.json()
+        st.write(f"### {color} {category}")
 
-                rate = rate_data["rates"][to_currency]
+        # Healthy Weight Range
+        min_weight = 18.5 * (height ** 2)
+        max_weight = 24.9 * (height ** 2)
 
-            else:
-                st.error("Unable to fetch exchange rate.")
+        st.subheader("Healthy Weight Range")
+        st.write(f"**{min_weight:.1f} kg - {max_weight:.1f} kg**")
 
-        except requests.exceptions.RequestException:
-            st.error("Internet connection or API error.")
+        # Gain / Lose Weight
+        st.subheader("Recommendation")
 
-        except Exception as e:
-            st.error(f"Something went wrong: {e}")
+        if weight < min_weight:
+            gain = min_weight - weight
+            st.warning(f"You should gain approximately **{gain:.1f} kg**.")
+        elif weight > max_weight:
+            lose = weight - max_weight
+            st.warning(f"You should lose approximately **{lose:.1f} kg**.")
+        else:
+            st.success("🎉 Congratulations! Your weight is within the healthy range.")
 
-    # Display result
-    st.success(
-        f"{amount:,.2f} {from_currency} = "
-        f"{result:,.2f} {to_currency}"
-    )
+        # BMI Progress Bar
+        progress = min(bmi / 40, 1.0)
+        st.subheader("BMI Scale")
+        st.progress(progress)
 
-    st.info(
-        f"1 {from_currency} = {rate:.4f} {to_currency}"
-    )
+        # BMI Table
+        st.subheader("BMI Categories")
+
+        st.table({
+            "Category": [
+                "Underweight",
+                "Normal Weight",
+                "Overweight",
+                "Obese"
+            ],
+            "BMI Range": [
+                "< 18.5",
+                "18.5 - 24.9",
+                "25 - 29.9",
+                "30+"
+            ]
+        })

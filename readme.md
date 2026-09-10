@@ -1,173 +1,149 @@
-# 💱 Currency Converter
+# ⚖️ BMI Calculator
 
-A simple and user-friendly **Currency Converter web application** built with **Python and Streamlit**. It allows users to convert an amount from one currency to another using the latest available exchange rates.
+A simple and interactive BMI (Body Mass Index) Calculator built using **Python** and **Streamlit**.
+
+Users can enter their weight and height to calculate their BMI, view their health category, healthy weight range, and receive personalized recommendations.
+
+---
 
 Link:
 
 ## 🚀 Features
 
-* 💱 Convert between multiple currencies
-* 🌐 Uses live exchange-rate data
-* 💰 Enter any amount for conversion
-* 🔄 Select source and target currencies
-* 📊 Displays the converted amount
-* 📈 Displays the current exchange rate
-* ⚠️ Handles API and internet connection errors
-* 📱 Responsive Streamlit interface
+- Calculate BMI instantly
+- Displays BMI value
+- Identifies BMI category
+  - 🟡 Underweight
+  - 🟢 Normal Weight
+  - 🟠 Overweight
+  - 🔴 Obese
+- Shows healthy weight range
+- Weight gain/loss recommendation
+- BMI progress bar
+- BMI category reference table
+- Input validation for invalid values
+- Clean and responsive Streamlit interface
 
-## 🛠️ Technologies Used
-
-* **Python**
-* **Streamlit**
-* **Requests**
-* **Frankfurter API**
+---
 
 ## 📂 Project Structure
 
-```text
-Currency-Converter/
+```
+BMI-Calculator/
 │
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
 ```
 
-## ⚙️ Installation
+---
+
+## 🛠️ Technologies Used
+
+- Python 3.10+
+- Streamlit
+
+---
+
+## 📦 Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/currency-converter.git
+git clone https://github.com/vedantacharya21/bmi-calculator.git
 ```
 
-### 2. Open the project folder
+### 2. Navigate to the project
 
 ```bash
-cd currency-converter
+cd bmi-calculator
 ```
 
-### 3. Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
-### 4. Activate the virtual environment
-
-**Windows:**
-
-```bash
-venv\Scripts\activate
-```
-
-**macOS/Linux:**
-
-```bash
-source venv/bin/activate
-```
-
-### 5. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ## ▶️ Run the Application
 
-Run the following command:
+```bash
+streamlit run app.py
+```
+
+If the above command doesn't work, use:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-The application will open in your browser.
+---
 
-## 💡 How It Works
+## 📊 BMI Classification
 
-1. Enter the amount you want to convert.
-2. Select the currency you are converting **from**.
-3. Select the currency you want to convert **to**.
-4. Click the **Convert** button.
-5. The application fetches the latest exchange-rate information.
-6. The converted amount and exchange rate are displayed.
+| Category | BMI Range |
+|----------|-----------|
+| Underweight | Below 18.5 |
+| Normal Weight | 18.5 – 24.9 |
+| Overweight | 25.0 – 29.9 |
+| Obese | 30.0 and above |
 
-### Example
+---
 
-```text
-100 USD → INR
+## 📸 Preview
 
-100 USD = 8,xxx.xx INR
-1 USD = xx.xx INR
+The application includes:
+
+- Weight input
+- Height input
+- BMI calculation
+- Healthy weight range
+- Personalized recommendation
+- BMI progress indicator
+- BMI classification table
+
+---
+
+## 💡 Formula Used
+
+BMI is calculated using:
+
+```
+BMI = Weight (kg) / Height² (m²)
 ```
 
-The actual value depends on the exchange rate returned by the API.
+Example:
 
-## 🌐 API
+```
+Weight = 70 kg
+Height = 1.75 m
 
-This project uses the **Frankfurter API** to retrieve exchange-rate information.
-
-API endpoint:
-
-```text
-https://api.frankfurter.app/latest
+BMI = 70 / (1.75 × 1.75)
+BMI = 22.86
 ```
 
-No API key is required for the basic usage implemented in this project.
+---
 
-## 📋 Supported Currencies
+## 🎯 Future Improvements
 
-The current version supports:
+- Imperial unit support (Feet/Inches & Pounds)
+- BMI gauge chart
+- Health tips based on BMI
+- Dark mode support
+- Download BMI report as PDF
+- BMI history tracking
+- Age and gender-based recommendations
 
-* 🇺🇸 USD — US Dollar
-* 🇮🇳 INR — Indian Rupee
-* 🇪🇺 EUR — Euro
-* 🇬🇧 GBP — British Pound
-* 🇯🇵 JPY — Japanese Yen
-* 🇦🇺 AUD — Australian Dollar
-* 🇨🇦 CAD — Canadian Dollar
-* 🇨🇭 CHF — Swiss Franc
-* 🇨🇳 CNY — Chinese Yuan
-* 🇦🇪 AED — UAE Dirham
-
-## ⚠️ Error Handling
-
-The application handles:
-
-* Internet connection problems
-* API request failures
-* Invalid API responses
-* Unexpected errors
-
-## 🚀 Deployment
-
-This Streamlit application can be deployed on platforms such as:
-
-* Streamlit Community Cloud
-* Render
-* Other platforms that support Python/Streamlit applications
-
-For deployment, make sure `requirements.txt` is included in the repository.
-
-## 🔮 Future Improvements
-
-Possible improvements include:
-
-* 🔄 Add a currency swap button
-* 🌎 Support more currencies
-* 📅 Add historical exchange rates
-* 📊 Add exchange-rate charts
-* 💾 Cache exchange rates
-* 🕒 Display the last updated time
-* 🎨 Improve the UI with custom styling
-* 📱 Improve mobile responsiveness
-* 📈 Add historical currency trends
+---
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
-Computer Engineering Student
+---
 
 ## 📄 License
 
-This project is open-source and available for educational and personal use.
+This project is licensed under the MIT License.
