@@ -1,82 +1,81 @@
-# 🎂 Age Calculator
+# 🎓 Grade Checker
 
-A simple and interactive Age Calculator built using **Python** and **Streamlit**. Users can select their date of birth and instantly calculate their age in years.
+A simple and interactive Grade Checker web application built with **Python** and **Streamlit**. Enter your marks (0–100) and instantly find your grade.
 
 Link:
 
 ## 🚀 Features
 
-- 📅 Select Date of Birth
-- 🎂 Calculate Age in Years
-- ⚡ Fast and Simple Interface
-- 🌐 Built with Streamlit
-- 📱 Responsive Web Application
+- Simple and clean user interface
+- Instant grade calculation
+- Input validation (0–100 marks)
+- Responsive Streamlit web app
 
-## 🛠️ Technologies Used
+## 🏆 Grade Criteria
 
-- Python
-- Streamlit
-- datetime Module
+| Marks | Grade |
+|-------:|:-----:|
+| 90 – 100 | A1 |
+| 80 – 89 | A2 |
+| 70 – 79 | B1 |
+| 60 – 69 | B2 |
+| 50 – 59 | C1 |
+| 40 – 49 | C2 |
+| 33 – 39 | D |
+| 21 – 32 | E1 |
+| 0 – 20 | E2 |
 
 ## 📂 Project Structure
 
 ```
-Age-Calculator/
+grade-checker/
 │
 ├── app.py
 ├── requirements.txt
 ├── README.md
 ```
 
-## ▶️ Installation
+## 🛠️ Installation
 
-### Clone the repository
-
-```bash
-git clone https://github.com/vedantacharya21/age-calculator.git
-```
-
-### Navigate to the project
+1. Clone the repository
 
 ```bash
-cd Age-Calculator
+git clone https://github.com/vedantacharya21/grade-checker.git
 ```
 
-### Install dependencies
+2. Navigate to the project directory
+
+```bash
+cd grade-checker
+```
+
+3. Install the required packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run the application
+4. Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-## 📸 Screenshot
+If the above command doesn't work, use:
 
-(Add a screenshot of your application here after deployment.)
+```bash
+python -m streamlit run app.py
+```
 
-## 🎯 Future Improvements
+## 💻 Technologies Used
 
-- Calculate age in Years, Months, and Days
-- Display Total Days Lived
-- Show Total Hours, Minutes, and Seconds
-- Countdown to Next Birthday
-- Zodiac Sign Detection
-- Birthday Weekday
-- Leap Year Check
-- Better UI and Theme
+- Python
+- Streamlit
 
-## 👨‍💻 Author
+## 📸 Preview
 
-**Vedant Acharya**
+Enter your marks and click **Check Grade** to view your grade instantly.
 
-GitHub: https://github.com/vedantacharya21
+## 📄 License
 
-LinkedIn: https://www.linkedin.com/in/vedant-acharya-71b012374/
-
----
-
-⭐ If you found this project useful, consider giving it a star on GitHub.
+This project is open source and available under the MIT License.
