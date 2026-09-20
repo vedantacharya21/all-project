@@ -1,45 +1,97 @@
 import streamlit as st
+import requests
 
-# Page Configuration
 st.set_page_config(
-    page_title="Grade Checker",
-    page_icon="🎓",
+    page_title="Currency Converter",
+    page_icon="💱",
     layout="centered"
 )
 
-st.title("🎓 Grade Checker")
-st.write("Enter your marks to check your grade.")
+st.title("💱 Currency Converter")
+st.write("Convert currencies using the latest exchange rates.")
 
-st.divider()
+# Currency list
+currencies = {
+    "USD": "US Dollar",
+    "INR": "Indian Rupee",
+    "EUR": "Euro",
+    "GBP": "British Pound",
+    "JPY": "Japanese Yen",
+    "AUD": "Australian Dollar",
+    "CAD": "Canadian Dollar",
+    "CHF": "Swiss Franc",
+    "CNY": "Chinese Yuan",
+    "AED": "UAE Dirham"
+}
 
-# User Input
-marks = st.number_input(
-    "Enter Your Marks",
-    min_value=0.0,
-    max_value=100.0,
-    step=0.1
+# Input
+amount = st.number_input(
+    "Enter amount",
+    min_value=0.01,
+    value=100.0,
+    step=1.0
 )
 
-# Button
-if st.button("Check Grade"):
+col1, col2 = st.columns(2)
 
-    if 90 <= marks <= 100:
-        grade = "A1"
-    elif 80 <= marks < 90:
-        grade = "A2"
-    elif 70 <= marks < 80:
-        grade = "B1"
-    elif 60 <= marks < 70:
-        grade = "B2"
-    elif 50 <= marks < 60:
-        grade = "C1"
-    elif 40 <= marks < 50:
-        grade = "C2"
-    elif 33 <= marks < 40:
-        grade = "D"
-    elif 21 <= marks < 33:
-        grade = "E1"
+with col1:
+    from_currency = st.selectbox(
+        "From",
+        list(currencies.keys()),
+        format_func=lambda x: f"{x} - {currencies[x]}"
+    )
+
+with col2:
+    to_currency = st.selectbox(
+        "To",
+        list(currencies.keys()),
+        index=1,
+        format_func=lambda x: f"{x} - {currencies[x]}"
+    )
+
+if st.button("Convert 💱", use_container_width=True):
+
+    if from_currency == to_currency:
+        result = amount
+        rate = 1
+
     else:
-        grade = "E2"
+        try:
+            url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
 
-    st.success(f"🎉 Your Grade is: **{grade}**")
+            response = requests.get(url, timeout=10)
+
+            if response.status_code == 200:
+                data = response.json()
+
+                result = data["rates"][to_currency]
+
+                # Get exchange rate for 1 unit
+                rate_url = (
+                    f"https://api.frankfurter.app/latest"
+                    f"?amount=1&from={from_currency}&to={to_currency}"
+                )
+
+                rate_response = requests.get(rate_url, timeout=10)
+                rate_data = rate_response.json()
+
+                rate = rate_data["rates"][to_currency]
+
+            else:
+                st.error("Unable to fetch exchange rate.")
+
+        except requests.exceptions.RequestException:
+            st.error("Internet connection or API error.")
+
+        except Exception as e:
+            st.error(f"Something went wrong: {e}")
+
+    # Display result
+    st.success(
+        f"{amount:,.2f} {from_currency} = "
+        f"{result:,.2f} {to_currency}"
+    )
+
+    st.info(
+        f"1 {from_currency} = {rate:.4f} {to_currency}"
+    )
