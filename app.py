@@ -1,45 +1,106 @@
 import streamlit as st
 
+# ---------------------------
 # Page Configuration
+# ---------------------------
 st.set_page_config(
-    page_title="Grade Checker",
-    page_icon="🎓",
+    page_title="To-Do List",
+    page_icon="📝",
     layout="centered"
 )
 
-st.title("🎓 Grade Checker")
-st.write("Enter your marks to check your grade.")
+st.title("📝 To-Do List App")
+st.write("Manage your daily tasks easily.")
 
-st.divider()
+# ---------------------------
+# Session State
+# ---------------------------
+if "tasks" not in st.session_state:
+    st.session_state.tasks = []
 
-# User Input
-marks = st.number_input(
-    "Enter Your Marks",
-    min_value=0.0,
-    max_value=100.0,
-    step=0.1
+# ---------------------------
+# Sidebar Menu
+# ---------------------------
+menu = st.sidebar.selectbox(
+    "Choose an Option",
+    (
+        "Add Task",
+        "Remove Task",
+        "View Tasks",
+        "Print Every Task"
+    )
 )
 
-# Button
-if st.button("Check Grade"):
+# ---------------------------
+# Add Task
+# ---------------------------
+if menu == "Add Task":
 
-    if 90 <= marks <= 100:
-        grade = "A1"
-    elif 80 <= marks < 90:
-        grade = "A2"
-    elif 70 <= marks < 80:
-        grade = "B1"
-    elif 60 <= marks < 70:
-        grade = "B2"
-    elif 50 <= marks < 60:
-        grade = "C1"
-    elif 40 <= marks < 50:
-        grade = "C2"
-    elif 33 <= marks < 40:
-        grade = "D"
-    elif 21 <= marks < 33:
-        grade = "E1"
+    st.subheader("➕ Add New Task")
+
+    task = st.text_input("Enter Task")
+
+    if st.button("Add Task"):
+
+        if task.strip() == "":
+            st.warning("Task cannot be empty.")
+        else:
+            st.session_state.tasks.append(task)
+            st.success("Task Added Successfully!")
+
+# ---------------------------
+# Remove Task
+# ---------------------------
+elif menu == "Remove Task":
+
+    st.subheader("❌ Remove Task")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Available.")
     else:
-        grade = "E2"
 
-    st.success(f"🎉 Your Grade is: **{grade}**")
+        selected_task = st.selectbox(
+            "Select Task",
+            st.session_state.tasks
+        )
+
+        if st.button("Remove Task"):
+
+            st.session_state.tasks.remove(selected_task)
+
+            st.success("Task Removed Successfully!")
+
+# ---------------------------
+# View Tasks
+# ---------------------------
+elif menu == "View Tasks":
+
+    st.subheader("📋 Your Tasks")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Found.")
+    else:
+
+        for i, task in enumerate(st.session_state.tasks, start=1):
+            st.write(f"**{i}.** {task}")
+
+# ---------------------------
+# Print Every Task
+# ---------------------------
+elif menu == "Print Every Task":
+
+    st.subheader("🖨️ Print Every Task")
+
+    if len(st.session_state.tasks) == 0:
+        st.info("No Tasks Found.")
+    else:
+
+        for i, task in enumerate(st.session_state.tasks, start=1):
+
+            st.markdown(f"""
+### Task {i}
+
+{task}
+
+---
+""")

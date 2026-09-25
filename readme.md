@@ -1,81 +1,95 @@
-# 🎓 Grade Checker
+# 📝 To-Do List App
 
-A simple and interactive Grade Checker web application built with **Python** and **Streamlit**. Enter your marks (0–100) and instantly find your grade.
+A simple and interactive **To-Do List** web application built using **Python** and **Streamlit**. This application helps users manage their daily tasks with an easy-to-use interface.
 
 Link:
 
 ## 🚀 Features
 
-- Simple and clean user interface
-- Instant grade calculation
-- Input validation (0–100 marks)
-- Responsive Streamlit web app
+- ➕ Add New Tasks
+- ❌ Remove Existing Tasks
+- 📋 View All Tasks
+- 🖨️ Print Every Task
+- 💾 Session-based task storage using Streamlit Session State
+- 🎨 Clean and responsive user interface
 
-## 🏆 Grade Criteria
+## 🛠️ Technologies Used
 
-| Marks | Grade |
-|-------:|:-----:|
-| 90 – 100 | A1 |
-| 80 – 89 | A2 |
-| 70 – 79 | B1 |
-| 60 – 69 | B2 |
-| 50 – 59 | C1 |
-| 40 – 49 | C2 |
-| 33 – 39 | D |
-| 21 – 32 | E1 |
-| 0 – 20 | E2 |
+- Python 3
+- Streamlit
 
 ## 📂 Project Structure
 
 ```
-grade-checker/
+Todo-List/
 │
 ├── app.py
-├── requirements.txt
 ├── README.md
+└── requirements.txt
 ```
 
-## 🛠️ Installation
+## 📦 Installation
 
-1. Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/grade-checker.git
+git clone https://github.com/vedantacharya21/todo-list.git
 ```
 
-2. Navigate to the project directory
+### 2. Navigate to the project folder
 
 ```bash
-cd grade-checker
+cd todo-list
 ```
 
-3. Install the required packages
+### 3. Install the required packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application
+## ▶️ Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-If the above command doesn't work, use:
+The application will open automatically in your default web browser.
 
-```bash
-python -m streamlit run app.py
-```
+## 📖 How to Use
 
-## 💻 Technologies Used
+1. Select an option from the sidebar.
+2. Add a new task.
+3. View all your tasks.
+4. Remove completed or unwanted tasks.
+5. Print all tasks in a formatted view.
 
-- Python
-- Streamlit
+## 📸 Features Overview
 
-## 📸 Preview
+- Add Task
+- Remove Task
+- View Tasks
+- Print Every Task
 
-Enter your marks and click **Check Grade** to view your grade instantly.
+## 🔮 Future Improvements
+
+- ✅ Edit Tasks
+- ✅ Mark Tasks as Completed
+- ⭐ Task Priority
+- 📅 Due Dates
+- 💾 Save Tasks Permanently
+- 🔍 Search Tasks
+- 🗑️ Clear All Tasks
+- 📊 Task Statistics Dashboard
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit a pull request.
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is licensed under the MIT License.
+
+---
+
+Developed with ❤️ using Python and Streamlit.
