@@ -1,95 +1,94 @@
-# 📝 To-Do List App
+# 🎮 Rock Paper Scissor Game
 
-A simple and interactive **To-Do List** web application built using **Python** and **Streamlit**. This application helps users manage their daily tasks with an easy-to-use interface.
+A simple Rock Paper Scissor game built using **Python** and **Streamlit**.
 
 Link:
 
-## 🚀 Features
+## Features
 
-- ➕ Add New Tasks
-- ❌ Remove Existing Tasks
-- 📋 View All Tasks
-- 🖨️ Print Every Task
-- 💾 Session-based task storage using Streamlit Session State
-- 🎨 Clean and responsive user interface
+- Play against the computer
+- Random computer choice
+- Instant winner announcement
+- Clean and responsive UI
+- Beginner-friendly project
 
-## 🛠️ Technologies Used
+---
 
-- Python 3
-- Streamlit
-
-## 📂 Project Structure
+## Project Structure
 
 ```
-Todo-List/
+Rock-Paper-Scissor/
 │
 ├── app.py
-├── README.md
-└── requirements.txt
+├── requirements.txt
+└── README.md
 ```
 
-## 📦 Installation
+---
 
-### 1. Clone the repository
+## Installation
+
+### Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/todo-list.git
+git clone https://github.com/vedantacharya21/rock-paper-scissor.git
 ```
 
-### 2. Navigate to the project folder
+### Move into the project folder
 
 ```bash
-cd todo-list
+cd rock-paper-scissor
 ```
 
-### 3. Install the required packages
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ▶️ Run the Application
+### Run the application
 
 ```bash
 streamlit run app.py
 ```
 
-The application will open automatically in your default web browser.
+or
 
-## 📖 How to Use
-
-1. Select an option from the sidebar.
-2. Add a new task.
-3. View all your tasks.
-4. Remove completed or unwanted tasks.
-5. Print all tasks in a formatted view.
-
-## 📸 Features Overview
-
-- Add Task
-- Remove Task
-- View Tasks
-- Print Every Task
-
-## 🔮 Future Improvements
-
-- ✅ Edit Tasks
-- ✅ Mark Tasks as Completed
-- ⭐ Task Priority
-- 📅 Due Dates
-- 💾 Save Tasks Permanently
-- 🔍 Search Tasks
-- 🗑️ Clear All Tasks
-- 📊 Task Statistics Dashboard
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to fork this repository and submit a pull request.
-
-## 📄 License
-
-This project is licensed under the MIT License.
+```bash
+python -m streamlit run app.py
+```
 
 ---
 
-Developed with ❤️ using Python and Streamlit.
+## Technologies Used
+
+- Python
+- Streamlit
+
+---
+
+## Game Rules
+
+- Rock beats Scissor
+- Scissor beats Paper
+- Paper beats Rock
+- Same choice results in a Draw
+
+---
+
+## Future Improvements
+
+- Add score tracking
+- Multiple rounds
+- Best of 3 / Best of 5 mode
+- Sound effects
+- Animations
+- Leaderboard
+- Reset Game button
+- Better UI with custom CSS
+
+---
+
+## License
+
+This project is open source and free to use.

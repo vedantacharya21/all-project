@@ -1,106 +1,44 @@
 import streamlit as st
+import random
 
-# ---------------------------
 # Page Configuration
-# ---------------------------
 st.set_page_config(
-    page_title="To-Do List",
-    page_icon="📝",
+    page_title="Rock Paper Scissor Game",
+    page_icon="🎮",
     layout="centered"
 )
 
-st.title("📝 To-Do List App")
-st.write("Manage your daily tasks easily.")
+# Title
+st.title("🎮 Rock Paper Scissor Game")
+st.write("Play Rock, Paper, Scissor against the computer!")
 
-# ---------------------------
-# Session State
-# ---------------------------
-if "tasks" not in st.session_state:
-    st.session_state.tasks = []
+choices = ["Rock", "Paper", "Scissor"]
 
-# ---------------------------
-# Sidebar Menu
-# ---------------------------
-menu = st.sidebar.selectbox(
-    "Choose an Option",
-    (
-        "Add Task",
-        "Remove Task",
-        "View Tasks",
-        "Print Every Task"
-    )
+# User Choice
+user_choice = st.selectbox(
+    "Choose your move:",
+    choices
 )
 
-# ---------------------------
-# Add Task
-# ---------------------------
-if menu == "Add Task":
+# Play Button
+if st.button("Play"):
 
-    st.subheader("➕ Add New Task")
+    computer_choice = random.choice(choices)
 
-    task = st.text_input("Enter Task")
+    st.subheader("Results")
+    st.write(f"🧑 You chose: **{user_choice}**")
+    st.write(f"💻 Computer chose: **{computer_choice}**")
 
-    if st.button("Add Task"):
-
-        if task.strip() == "":
-            st.warning("Task cannot be empty.")
-        else:
-            st.session_state.tasks.append(task)
-            st.success("Task Added Successfully!")
-
-# ---------------------------
-# Remove Task
-# ---------------------------
-elif menu == "Remove Task":
-
-    st.subheader("❌ Remove Task")
-
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Available.")
+    if user_choice == computer_choice:
+        st.info("🤝 Match Draw!")
+    elif (
+        (user_choice == "Rock" and computer_choice == "Scissor") or
+        (user_choice == "Paper" and computer_choice == "Rock") or
+        (user_choice == "Scissor" and computer_choice == "Paper")
+    ):
+        st.success("🎉 You Win!")
     else:
+        st.error("😢 Computer Wins!")
 
-        selected_task = st.selectbox(
-            "Select Task",
-            st.session_state.tasks
-        )
-
-        if st.button("Remove Task"):
-
-            st.session_state.tasks.remove(selected_task)
-
-            st.success("Task Removed Successfully!")
-
-# ---------------------------
-# View Tasks
-# ---------------------------
-elif menu == "View Tasks":
-
-    st.subheader("📋 Your Tasks")
-
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Found.")
-    else:
-
-        for i, task in enumerate(st.session_state.tasks, start=1):
-            st.write(f"**{i}.** {task}")
-
-# ---------------------------
-# Print Every Task
-# ---------------------------
-elif menu == "Print Every Task":
-
-    st.subheader("🖨️ Print Every Task")
-
-    if len(st.session_state.tasks) == 0:
-        st.info("No Tasks Found.")
-    else:
-
-        for i, task in enumerate(st.session_state.tasks, start=1):
-
-            st.markdown(f"""
-### Task {i}
-
-{task}
-
----
-""")
+st.markdown("---")
+st.caption("Made with ❤️ using Streamlit")
