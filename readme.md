@@ -1,58 +1,73 @@
-# 🎮 Rock Paper Scissor Game
+# 🔳 QR Code Generator
 
-A simple Rock Paper Scissor game built using **Python** and **Streamlit**.
+A modern QR Code Generator built with **Python** and **Streamlit**. Generate QR codes for text, URLs, and other information with customizable colors and sizes, then download them as PNG images.
+
+---
 
 Link:
 
-## Features
+## 🚀 Features
 
-- Play against the computer
-- Random computer choice
-- Instant winner announcement
-- Clean and responsive UI
-- Beginner-friendly project
-
----
-
-## Project Structure
-
-```
-Rock-Paper-Scissor/
-│
-├── app.py
-├── requirements.txt
-└── README.md
-```
+- Generate QR codes instantly
+- Supports text and URLs
+- Custom QR code size
+- Custom foreground color
+- Custom background color
+- Live QR code preview
+- Download QR code as PNG
+- Responsive Streamlit interface
 
 ---
 
-## Installation
+## 🛠️ Technologies Used
 
-### Clone the repository
+- Python
+- Streamlit
+- qrcode
+- Pillow
 
-```bash
-git clone https://github.com/vedantacharya21/rock-paper-scissor.git
+---
+
+## 📂 Project Structure
+
+```
+QR-Code-Generator/
+│── app.py
+│── requirements.txt
+│── README.md
 ```
 
-### Move into the project folder
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
 
 ```bash
-cd rock-paper-scissor
+git clone https://github.com/vedantacharya21/QR-Code-Generator.git
 ```
 
-### Install dependencies
+### 2. Navigate to the project folder
+
+```bash
+cd QR-Code-Generator
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run the application
+---
+
+## ▶️ Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-or
+If Streamlit is not recognized:
 
 ```bash
 python -m streamlit run app.py
@@ -60,35 +75,57 @@ python -m streamlit run app.py
 
 ---
 
-## Technologies Used
+## 📖 How to Use
 
-- Python
-- Streamlit
-
----
-
-## Game Rules
-
-- Rock beats Scissor
-- Scissor beats Paper
-- Paper beats Rock
-- Same choice results in a Draw
+1. Enter text or a URL.
+2. Enter a filename.
+3. Select the QR code size.
+4. Choose QR and background colors.
+5. Click **Generate QR Code**.
+6. Preview the generated QR code.
+7. Download it as a PNG image.
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- Add score tracking
-- Multiple rounds
-- Best of 3 / Best of 5 mode
-- Sound effects
-- Animations
-- Leaderboard
-- Reset Game button
-- Better UI with custom CSS
+- Support WiFi QR Codes
+- Email QR Codes
+- Phone Number QR Codes
+- SMS QR Codes
+- UPI Payment QR Codes
+- Contact (vCard) QR Codes
+- Logo inside QR Code
+- SVG Download
+- QR History
+- Dark Mode
 
 ---
 
-## License
+## 🤝 Contributing
 
-This project is open source and free to use.
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a new branch.
+3. Commit your changes.
+4. Push the branch.
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Vedant Acharya**
+
+GitHub: https://github.com/vedantacharya21
+
+Portfolio: https://vedantacharya.netlify.app/
+
+LinkedIn: https://linkedin.com/in/vedant-acharya-71b012374/
