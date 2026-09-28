@@ -1,111 +1,88 @@
 import streamlit as st
-import qrcode
-from qrcode.constants import ERROR_CORRECT_L
-from PIL import Image
-from io import BytesIO
+import secrets
+import time
 
-# -----------------------------
-# Page Configuration
-# -----------------------------
+# Page configuration
 st.set_page_config(
-    page_title="QR Code Generator",
-    page_icon="🔳",
+    page_title="OTP Generator",
+    page_icon="🔐",
     layout="centered"
 )
 
-# -----------------------------
-# Function to Generate QR Code
-# -----------------------------
-def generate_qr(data, box_size, fill_color, back_color):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=ERROR_CORRECT_L,
-        box_size=box_size,
-        border=4
-    )
+# Title
+st.title("🔐 OTP Generator")
+st.write("Generate and verify a secure 6-digit OTP.")
 
-    qr.add_data(data)
-    qr.make(fit=True)
+# Initialize session state
+if "otp" not in st.session_state:
+    st.session_state.otp = None
 
-    img = qr.make_image(
-        fill_color=fill_color,
-        back_color=back_color
-    ).convert("RGB")
+if "otp_time" not in st.session_state:
+    st.session_state.otp_time = None
 
-    return img
+# OTP validity time
+OTP_VALIDITY = 5 * 60  # 5 minutes
 
 
-# -----------------------------
-# UI
-# -----------------------------
-st.title("🔳 QR Code Generator")
-st.write("Generate QR Codes from Text or URLs.")
+# Generate OTP function
+def generate_otp():
+    return str(secrets.randbelow(900000) + 100000)
 
-data = st.text_area(
-    "Enter Text or URL",
-    placeholder="https://example.com"
-)
 
-filename = st.text_input(
-    "File Name",
-    value="qr_code"
-)
+# Generate OTP button
+if st.button("🔄 Generate OTP", use_container_width=True):
 
-box_size = st.slider(
-    "QR Size",
-    min_value=5,
-    max_value=20,
-    value=10
-)
+    st.session_state.otp = generate_otp()
+    st.session_state.otp_time = time.time()
 
-fill_color = st.color_picker(
-    "QR Color",
-    "#000000"
-)
+    st.success("OTP generated successfully!")
 
-back_color = st.color_picker(
-    "Background Color",
-    "#FFFFFF"
-)
 
-# -----------------------------
-# Generate Button
-# -----------------------------
-if st.button("Generate QR Code", use_container_width=True):
+# Display OTP and verification section
+if st.session_state.otp:
 
-    if data.strip() == "":
-        st.warning("Please enter some text or a URL.")
+    # Calculate remaining time
+    elapsed_time = time.time() - st.session_state.otp_time
+    remaining_time = OTP_VALIDITY - elapsed_time
+
+    if remaining_time > 0:
+
+        minutes = int(remaining_time // 60)
+        seconds = int(remaining_time % 60)
+
+        st.info(
+            f"🔑 Your OTP is: **{st.session_state.otp}**"
+        )
+
+        st.warning(
+            f"⏳ OTP expires in: **{minutes:02d}:{seconds:02d}**"
+        )
+
+        st.divider()
+
+        # OTP input
+        user_otp = st.text_input(
+            "Enter OTP",
+            placeholder="Enter 6-digit OTP",
+            max_chars=6
+        )
+
+        # Verify OTP
+        if st.button("✅ Verify OTP", use_container_width=True):
+
+            if not user_otp:
+                st.warning("Please enter the OTP.")
+
+            elif user_otp == st.session_state.otp:
+                st.success("🎉 OTP Verified Successfully!")
+
+            else:
+                st.error("❌ Invalid OTP. Please try again.")
 
     else:
-        try:
-            img = generate_qr(
-                data,
-                box_size,
-                fill_color,
-                back_color
-            )
+        st.error("⏰ OTP has expired. Please generate a new OTP.")
 
-            st.success("QR Code Generated Successfully!")
-
-            st.image(
-                img,
-                caption="Generated QR Code",
-                use_container_width=True
-            )
-
-            # Save image in memory
-            buffer = BytesIO()
-            img.save(buffer, format="PNG")
-            buffer.seek(0)
-
-            # Download Button
-            st.download_button(
-                label="📥 Download QR Code",
-                data=buffer.getvalue(),
-                file_name=f"{filename}.png",
-                mime="image/png",
-                use_container_width=True
-            )
-
-        except Exception as e:
-            st.error(f"Error: {e}")
+        if st.button("🔄 Generate New OTP", use_container_width=True):
+            st.session_state.otp = generate_otp()
+            st.session_state.otp_time = time.time()
+            st.rerun()

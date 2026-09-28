@@ -1,131 +1,106 @@
-# 🔳 QR Code Generator
+# 🔐 OTP Generator
 
-A modern QR Code Generator built with **Python** and **Streamlit**. Generate QR codes for text, URLs, and other information with customizable colors and sizes, then download them as PNG images.
+A simple and secure **OTP (One-Time Password) Generator** built using Python and Streamlit.
 
----
+The application generates a random 6-digit OTP and allows the user to verify it. Each OTP is valid for **5 minutes**.
 
 Link:
 
 ## 🚀 Features
 
-- Generate QR codes instantly
-- Supports text and URLs
-- Custom QR code size
-- Custom foreground color
-- Custom background color
-- Live QR code preview
-- Download QR code as PNG
-- Responsive Streamlit interface
-
----
+* 🔢 Generate a random 6-digit OTP
+* 🔐 Uses Python's `secrets` module for secure random generation
+* ⏳ OTP validity of 5 minutes
+* ✅ OTP verification
+* ❌ Invalid OTP detection
+* ⏰ Expired OTP detection
+* 🔄 Generate a new OTP after expiration
+* 🖥️ Simple and user-friendly Streamlit interface
 
 ## 🛠️ Technologies Used
 
-- Python
-- Streamlit
-- qrcode
-- Pillow
+* Python
+* Streamlit
+* Secrets
+* Time
 
----
+## 📁 Project Structure
 
-## 📂 Project Structure
-
+```text
+OTP-Generator/
+│
+├── app.py
+├── requirements.txt
+└── README.md
 ```
-QR-Code-Generator/
-│── app.py
-│── requirements.txt
-│── README.md
-```
 
----
-
-## 📦 Installation
+## ⚙️ Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/QR-Code-Generator.git
+git clone https://github.com/vedantacharya21/otp-generator.git
 ```
 
-### 2. Navigate to the project folder
+### 2. Open the project folder
 
 ```bash
-cd QR-Code-Generator
+cd otp-generator
 ```
 
-### 3. Install dependencies
+### 3. Install the required package
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
 ## ▶️ Run the Application
 
-```bash
-streamlit run app.py
-```
-
-If Streamlit is not recognized:
+Run the Streamlit application using:
 
 ```bash
 python -m streamlit run app.py
 ```
 
----
+The application will open in your browser.
 
-## 📖 How to Use
+## 🔄 How It Works
 
-1. Enter text or a URL.
-2. Enter a filename.
-3. Select the QR code size.
-4. Choose QR and background colors.
-5. Click **Generate QR Code**.
-6. Preview the generated QR code.
-7. Download it as a PNG image.
+1. Click **Generate OTP**.
+2. The application generates a random 6-digit OTP.
+3. The OTP is stored temporarily in the Streamlit session.
+4. The OTP remains valid for **5 minutes**.
+5. Enter the generated OTP in the input field.
+6. Click **Verify OTP**.
+7. If the OTP matches and has not expired, verification is successful.
+8. If the OTP is incorrect, an error message is displayed.
+9. After 5 minutes, the OTP expires and a new OTP must be generated.
 
----
+## 🔐 Security
 
-## 🔮 Future Improvements
+This project uses Python's `secrets` module instead of the `random` module for OTP generation.
 
-- Support WiFi QR Codes
-- Email QR Codes
-- Phone Number QR Codes
-- SMS QR Codes
-- UPI Payment QR Codes
-- Contact (vCard) QR Codes
-- Logo inside QR Code
-- SVG Download
-- QR History
-- Dark Mode
+The `secrets` module is designed for generating random values suitable for security-sensitive applications.
 
----
+> **Note:** This is an educational project. In a real authentication system, OTPs should normally be sent through a secure channel such as email or SMS rather than displayed directly on the screen.
 
-## 🤝 Contributing
+## 📌 Future Improvements
 
-Contributions are welcome.
+Possible improvements include:
 
-1. Fork the repository.
-2. Create a new branch.
-3. Commit your changes.
-4. Push the branch.
-5. Open a Pull Request.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
+* 📧 Send OTP through email
+* 📱 Send OTP through SMS
+* ⏱️ Add a live countdown timer
+* 🚫 Limit the number of verification attempts
+* 🔄 Add a "Resend OTP" feature
+* 🔒 Hash OTPs before storing them
+* 👤 Add user authentication
+* 📊 Add OTP verification logs
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
-GitHub: https://github.com/vedantacharya21
+## 📄 License
 
-Portfolio: https://vedantacharya.netlify.app/
-
-LinkedIn: https://linkedin.com/in/vedant-acharya-71b012374/
+This project is open-source and available for educational purposes.
