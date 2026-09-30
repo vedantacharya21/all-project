@@ -1,88 +1,97 @@
 import streamlit as st
-import secrets
-import time
+import requests
 
-# Page configuration
 st.set_page_config(
-    page_title="OTP Generator",
-    page_icon="🔐",
+    page_title="Currency Converter",
+    page_icon="💱",
     layout="centered"
 )
 
-# Title
-st.title("🔐 OTP Generator")
-st.write("Generate and verify a secure 6-digit OTP.")
+st.title("💱 Currency Converter")
+st.write("Convert currencies using the latest exchange rates.")
 
-# Initialize session state
-if "otp" not in st.session_state:
-    st.session_state.otp = None
+# Currency list
+currencies = {
+    "USD": "US Dollar",
+    "INR": "Indian Rupee",
+    "EUR": "Euro",
+    "GBP": "British Pound",
+    "JPY": "Japanese Yen",
+    "AUD": "Australian Dollar",
+    "CAD": "Canadian Dollar",
+    "CHF": "Swiss Franc",
+    "CNY": "Chinese Yuan",
+    "AED": "UAE Dirham"
+}
 
-if "otp_time" not in st.session_state:
-    st.session_state.otp_time = None
+# Input
+amount = st.number_input(
+    "Enter amount",
+    min_value=0.01,
+    value=100.0,
+    step=1.0
+)
 
-# OTP validity time
-OTP_VALIDITY = 5 * 60  # 5 minutes
+col1, col2 = st.columns(2)
 
+with col1:
+    from_currency = st.selectbox(
+        "From",
+        list(currencies.keys()),
+        format_func=lambda x: f"{x} - {currencies[x]}"
+    )
 
-# Generate OTP function
-def generate_otp():
-    return str(secrets.randbelow(900000) + 100000)
+with col2:
+    to_currency = st.selectbox(
+        "To",
+        list(currencies.keys()),
+        index=1,
+        format_func=lambda x: f"{x} - {currencies[x]}"
+    )
 
+if st.button("Convert 💱", use_container_width=True):
 
-# Generate OTP button
-if st.button("🔄 Generate OTP", use_container_width=True):
-
-    st.session_state.otp = generate_otp()
-    st.session_state.otp_time = time.time()
-
-    st.success("OTP generated successfully!")
-
-
-# Display OTP and verification section
-if st.session_state.otp:
-
-    # Calculate remaining time
-    elapsed_time = time.time() - st.session_state.otp_time
-    remaining_time = OTP_VALIDITY - elapsed_time
-
-    if remaining_time > 0:
-
-        minutes = int(remaining_time // 60)
-        seconds = int(remaining_time % 60)
-
-        st.info(
-            f"🔑 Your OTP is: **{st.session_state.otp}**"
-        )
-
-        st.warning(
-            f"⏳ OTP expires in: **{minutes:02d}:{seconds:02d}**"
-        )
-
-        st.divider()
-
-        # OTP input
-        user_otp = st.text_input(
-            "Enter OTP",
-            placeholder="Enter 6-digit OTP",
-            max_chars=6
-        )
-
-        # Verify OTP
-        if st.button("✅ Verify OTP", use_container_width=True):
-
-            if not user_otp:
-                st.warning("Please enter the OTP.")
-
-            elif user_otp == st.session_state.otp:
-                st.success("🎉 OTP Verified Successfully!")
-
-            else:
-                st.error("❌ Invalid OTP. Please try again.")
+    if from_currency == to_currency:
+        result = amount
+        rate = 1
 
     else:
-        st.error("⏰ OTP has expired. Please generate a new OTP.")
+        try:
+            url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
 
-        if st.button("🔄 Generate New OTP", use_container_width=True):
-            st.session_state.otp = generate_otp()
-            st.session_state.otp_time = time.time()
-            st.rerun()
+            response = requests.get(url, timeout=10)
+
+            if response.status_code == 200:
+                data = response.json()
+
+                result = data["rates"][to_currency]
+
+                # Get exchange rate for 1 unit
+                rate_url = (
+                    f"https://api.frankfurter.app/latest"
+                    f"?amount=1&from={from_currency}&to={to_currency}"
+                )
+
+                rate_response = requests.get(rate_url, timeout=10)
+                rate_data = rate_response.json()
+
+                rate = rate_data["rates"][to_currency]
+
+            else:
+                st.error("Unable to fetch exchange rate.")
+
+        except requests.exceptions.RequestException:
+            st.error("Internet connection or API error.")
+
+        except Exception as e:
+            st.error(f"Something went wrong: {e}")
+
+    # Display result
+    st.success(
+        f"{amount:,.2f} {from_currency} = "
+        f"{result:,.2f} {to_currency}"
+    )
+
+    st.info(
+        f"1 {from_currency} = {rate:.4f} {to_currency}"
+    )

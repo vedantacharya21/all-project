@@ -1,33 +1,31 @@
-# 🔐 OTP Generator
+# 💱 Currency Converter
 
-A simple and secure **OTP (One-Time Password) Generator** built using Python and Streamlit.
-
-The application generates a random 6-digit OTP and allows the user to verify it. Each OTP is valid for **5 minutes**.
+A simple and user-friendly **Currency Converter web application** built with **Python and Streamlit**. It allows users to convert an amount from one currency to another using the latest available exchange rates.
 
 Link:
 
 ## 🚀 Features
 
-* 🔢 Generate a random 6-digit OTP
-* 🔐 Uses Python's `secrets` module for secure random generation
-* ⏳ OTP validity of 5 minutes
-* ✅ OTP verification
-* ❌ Invalid OTP detection
-* ⏰ Expired OTP detection
-* 🔄 Generate a new OTP after expiration
-* 🖥️ Simple and user-friendly Streamlit interface
+* 💱 Convert between multiple currencies
+* 🌐 Uses live exchange-rate data
+* 💰 Enter any amount for conversion
+* 🔄 Select source and target currencies
+* 📊 Displays the converted amount
+* 📈 Displays the current exchange rate
+* ⚠️ Handles API and internet connection errors
+* 📱 Responsive Streamlit interface
 
 ## 🛠️ Technologies Used
 
-* Python
-* Streamlit
-* Secrets
-* Time
+* **Python**
+* **Streamlit**
+* **Requests**
+* **Frankfurter API**
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```text
-OTP-Generator/
+Currency-Converter/
 │
 ├── app.py
 ├── requirements.txt
@@ -39,16 +37,36 @@ OTP-Generator/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/otp-generator.git
+git clone https://github.com/vedantacharya21/currency-converter.git
 ```
 
 ### 2. Open the project folder
 
 ```bash
-cd otp-generator
+cd currency-converter
 ```
 
-### 3. Install the required package
+### 3. Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate the virtual environment
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+**macOS/Linux:**
+
+```bash
+source venv/bin/activate
+```
+
+### 5. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -56,7 +74,7 @@ pip install -r requirements.txt
 
 ## ▶️ Run the Application
 
-Run the Streamlit application using:
+Run the following command:
 
 ```bash
 python -m streamlit run app.py
@@ -64,43 +82,92 @@ python -m streamlit run app.py
 
 The application will open in your browser.
 
-## 🔄 How It Works
+## 💡 How It Works
 
-1. Click **Generate OTP**.
-2. The application generates a random 6-digit OTP.
-3. The OTP is stored temporarily in the Streamlit session.
-4. The OTP remains valid for **5 minutes**.
-5. Enter the generated OTP in the input field.
-6. Click **Verify OTP**.
-7. If the OTP matches and has not expired, verification is successful.
-8. If the OTP is incorrect, an error message is displayed.
-9. After 5 minutes, the OTP expires and a new OTP must be generated.
+1. Enter the amount you want to convert.
+2. Select the currency you are converting **from**.
+3. Select the currency you want to convert **to**.
+4. Click the **Convert** button.
+5. The application fetches the latest exchange-rate information.
+6. The converted amount and exchange rate are displayed.
 
-## 🔐 Security
+### Example
 
-This project uses Python's `secrets` module instead of the `random` module for OTP generation.
+```text
+100 USD → INR
 
-The `secrets` module is designed for generating random values suitable for security-sensitive applications.
+100 USD = 8,xxx.xx INR
+1 USD = xx.xx INR
+```
 
-> **Note:** This is an educational project. In a real authentication system, OTPs should normally be sent through a secure channel such as email or SMS rather than displayed directly on the screen.
+The actual value depends on the exchange rate returned by the API.
 
-## 📌 Future Improvements
+## 🌐 API
+
+This project uses the **Frankfurter API** to retrieve exchange-rate information.
+
+API endpoint:
+
+```text
+https://api.frankfurter.app/latest
+```
+
+No API key is required for the basic usage implemented in this project.
+
+## 📋 Supported Currencies
+
+The current version supports:
+
+* 🇺🇸 USD — US Dollar
+* 🇮🇳 INR — Indian Rupee
+* 🇪🇺 EUR — Euro
+* 🇬🇧 GBP — British Pound
+* 🇯🇵 JPY — Japanese Yen
+* 🇦🇺 AUD — Australian Dollar
+* 🇨🇦 CAD — Canadian Dollar
+* 🇨🇭 CHF — Swiss Franc
+* 🇨🇳 CNY — Chinese Yuan
+* 🇦🇪 AED — UAE Dirham
+
+## ⚠️ Error Handling
+
+The application handles:
+
+* Internet connection problems
+* API request failures
+* Invalid API responses
+* Unexpected errors
+
+## 🚀 Deployment
+
+This Streamlit application can be deployed on platforms such as:
+
+* Streamlit Community Cloud
+* Render
+* Other platforms that support Python/Streamlit applications
+
+For deployment, make sure `requirements.txt` is included in the repository.
+
+## 🔮 Future Improvements
 
 Possible improvements include:
 
-* 📧 Send OTP through email
-* 📱 Send OTP through SMS
-* ⏱️ Add a live countdown timer
-* 🚫 Limit the number of verification attempts
-* 🔄 Add a "Resend OTP" feature
-* 🔒 Hash OTPs before storing them
-* 👤 Add user authentication
-* 📊 Add OTP verification logs
+* 🔄 Add a currency swap button
+* 🌎 Support more currencies
+* 📅 Add historical exchange rates
+* 📊 Add exchange-rate charts
+* 💾 Cache exchange rates
+* 🕒 Display the last updated time
+* 🎨 Improve the UI with custom styling
+* 📱 Improve mobile responsiveness
+* 📈 Add historical currency trends
 
 ## 👨‍💻 Author
 
 **Vedant Acharya**
 
+Computer Engineering Student
+
 ## 📄 License
 
-This project is open-source and available for educational purposes.
+This project is open-source and available for educational and personal use.
