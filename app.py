@@ -1,38 +1,27 @@
 import streamlit as st
+from datetime import date
 
 st.set_page_config(
-    page_title="Calculator",
-    page_icon="🧮",
+    page_title="Age Calculator",
+    page_icon="🎂",
     layout="centered"
 )
 
-st.title("🧮 Calculator")
-st.write("A simple calculator built with Python and Streamlit.")
+st.title("🎂 Age Calculator")
 
-num1 = st.number_input("Enter first number", value=0.0)
-num2 = st.number_input("Enter second number", value=0.0)
-
-operation = st.selectbox(
-    "Choose an operation",
-    ["Addition (+)", "Subtraction (-)", "Multiplication (×)", "Division (÷)"]
+birth_date = st.date_input(
+    "Select your Date of Birth",
+    min_value=date(1900, 1, 1),
+    max_value=date.today()
 )
 
-if st.button("Calculate"):
-    if operation == "Addition (+)":
-        result = num1 + num2
-        st.success(f"Result: {result}")
+if st.button("Calculate Age"):
 
-    elif operation == "Subtraction (-)":
-        result = num1 - num2
-        st.success(f"Result: {result}")
+    today = date.today()
 
-    elif operation == "Multiplication (×)":
-        result = num1 * num2
-        st.success(f"Result: {result}")
+    age = today.year - birth_date.year
 
-    elif operation == "Division (÷)":
-        if num2 == 0:
-            st.error("Cannot divide by zero.")
-        else:
-            result = num1 / num2
-            st.success(f"Result: {result}")
+    if (today.month, today.day) < (birth_date.month, birth_date.day):
+        age -= 1
+
+    st.success(f"🎉 Your Age is **{age} Years**")

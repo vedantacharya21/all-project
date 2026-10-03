@@ -1,105 +1,82 @@
-# 🧮 Calculator Using Python & Streamlit
+# 🎂 Age Calculator
 
-A simple and beginner-friendly calculator built using **Python** and **Streamlit**.
-
-This project performs basic mathematical operations through a simple web interface.
+A simple and interactive Age Calculator built using **Python** and **Streamlit**. Users can select their date of birth and instantly calculate their age in years.
 
 Link:
 
 ## 🚀 Features
 
-* Addition
-* Subtraction
-* Multiplication
-* Division
-* Division-by-zero error handling
-* Simple and clean Streamlit interface
+- 📅 Select Date of Birth
+- 🎂 Calculate Age in Years
+- ⚡ Fast and Simple Interface
+- 🌐 Built with Streamlit
+- 📱 Responsive Web Application
 
 ## 🛠️ Technologies Used
 
-* Python
-* Streamlit
+- Python
+- Streamlit
+- datetime Module
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-```text
-Calculator/
+```
+Age-Calculator/
 │
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
 ```
 
-## ⚙️ Installation
+## ▶️ Installation
 
-### 1. Clone the repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/vedantacharya21/calculator.git
+git clone https://github.com/vedantacharya21/age-calculator.git
 ```
 
-### 2. Open the project folder
+### Navigate to the project
 
 ```bash
-cd calculator
+cd Age-Calculator
 ```
 
-### 3. Install the required library
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## ▶️ Run the Application
-
-Run the following command:
+### Run the application
 
 ```bash
-python -m streamlit run app.py
+streamlit run app.py
 ```
 
-The application will open in your browser.
+## 📸 Screenshot
 
-## 🧮 How It Works
+(Add a screenshot of your application here after deployment.)
 
-1. Enter the first number.
-2. Enter the second number.
-3. Select an operation.
-4. Click **Calculate**.
-5. The result will be displayed on the screen.
+## 🎯 Future Improvements
 
-## 📌 Example
+- Calculate age in Years, Months, and Days
+- Display Total Days Lived
+- Show Total Hours, Minutes, and Seconds
+- Countdown to Next Birthday
+- Zodiac Sign Detection
+- Birthday Weekday
+- Leap Year Check
+- Better UI and Theme
 
-If:
+## 👨‍💻 Author
 
-```text
-First Number: 20
-Second Number: 5
-Operation: Division
-```
+**Vedant Acharya**
 
-The output will be:
+GitHub: https://github.com/vedantacharya21
 
-```text
-Result: 4.0
-```
+LinkedIn: https://www.linkedin.com/in/vedant-acharya-71b012374/
 
-## ⚠️ Error Handling
+---
 
-The calculator prevents division by zero.
-
-For example:
-
-```text
-10 ÷ 0
-```
-
-will display:
-
-```text
-Cannot divide by zero.
-```
-
-## 📄 License
-
-This project is open-source and available for learning and educational purposes.
+⭐ If you found this project useful, consider giving it a star on GitHub.
